@@ -1,6 +1,10 @@
+import 'package:cs4800_classproject/Pages/Dashboard/dashboardtrending.dart';
+import 'package:cs4800_classproject/Pages/Dashboard/dashboardyourlistings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../Listing/listingmain.dart';
 
 
 class DashboardMain extends StatefulWidget {
@@ -60,15 +64,19 @@ class _DashboardMainState extends State<DashboardMain> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: TextButton(onPressed: (){
-
-                }, child: Text(
-                  'All'
-                )),
+                child: TextButton(onPressed: null, child: const Text(
+                  'All',
+                  style: TextStyle(
+                    color: Colors.blue
+                  ),
+                ),),
               ),
               Expanded(
                 child: TextButton(onPressed: (){
-
+                  Navigator.pushReplacement(context,
+                      PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) => DashboardTrending(),
+                          transitionDuration: Duration(seconds: 0)));
                 }, child: Text(
                     'Trending',
                   style: TextStyle(
@@ -78,7 +86,10 @@ class _DashboardMainState extends State<DashboardMain> {
               ),
               Expanded(
                 child: TextButton(onPressed: (){
-
+                  Navigator.pushReplacement(context,
+                      PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) => DashboardListing(),
+                          transitionDuration: Duration(seconds: 0)));
                 }, child: Text(
                     'Your Listings',
                     style: TextStyle(
@@ -100,31 +111,51 @@ class _DashboardMainState extends State<DashboardMain> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(0.4),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                    width: width * .3,
-                                    height: width * .3,
+                                child: InkWell(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
+                                    );
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(6.0),
+                                    child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
+                                      width: width * .3,
+                                      height: width * .3,
+                                    ),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(0.4),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                    width: width * .3,
-                                    height: width * .3,
-                                  ),
-                                  ),
+                                child: InkWell(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
+                                  );
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(6.0),
+                                    child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
+                                      width: width * .3,
+                                      height: width * .3,
+                                    ),
+                                    ),
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(0.4),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                    width: width * .3,
-                                    height: width * .3,
+                                child: InkWell(
+                                  onTap: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => Listing()),
+                                    );
+                                  }
+                                  ,child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(6.0),
+                                    child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
+                                      width: width * .3,
+                                      height: width * .3,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -141,9 +172,7 @@ class _DashboardMainState extends State<DashboardMain> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              child: IconButton(onPressed: (){
-
-              }, icon: const Icon(Icons.home)),
+              child: IconButton(onPressed: null, icon: const Icon(Icons.home)),
             ),
             Expanded(
               child: IconButton(onPressed: (){
