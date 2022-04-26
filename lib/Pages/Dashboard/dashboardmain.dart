@@ -1,3 +1,5 @@
+import 'package:cs4800_classproject/Classes/listingentry.dart';
+import 'package:cs4800_classproject/Classes/photo.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardtrending.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardyourlistings.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +22,10 @@ class _DashboardMainState extends State<DashboardMain> {
   @override
 
   Widget build(BuildContext context) {
+
+    ListingEntry listing1 = ListingEntry(listingID: 1, sellerID: 1, title: "First Listing", description: "This is my first listing", nFTToken: "nFTTokenNum", price: 10000.0);
+    Photo photo1 = Photo(photoId: 1, photoUrl: 'https://ichef.bbci.co.uk/news/640/cpsprodpb/DBB7/production/_122074265_hi071843849.jpg', listingID: 1);
+
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     double width = MediaQuery.of(context).size.width;
@@ -118,7 +124,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(6.0),
-                                    child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
+                                    child: Image.network('https://ichef.bbci.co.uk/news/640/cpsprodpb/DBB7/production/_122074265_hi071843849.jpg',fit: BoxFit.cover,
                                       width: width * .3,
                                       height: width * .3,
                                     ),
@@ -134,7 +140,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(6.0),
-                                    child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
+                                    child: Image.network('https://cdn.vox-cdn.com/thumbor/2xj1ySLIz1EZ49NvSsPzq8Itjyg=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/23084330/bored_ape_nft_accidental_.jpg',fit: BoxFit.cover,
                                       width: width * .3,
                                       height: width * .3,
                                     ),
@@ -152,7 +158,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                   }
                                   ,child: ClipRRect(
                                     borderRadius: BorderRadius.circular(6.0),
-                                    child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
+                                    child: Image.network('https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d456a2af571d980d8b2985472c262b31',fit: BoxFit.cover,
                                       width: width * .3,
                                       height: width * .3,
                                     ),
