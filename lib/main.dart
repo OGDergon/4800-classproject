@@ -1,3 +1,4 @@
+import 'package:cs4800_classproject/Pages/Login/logincreateaccount.dart';
 import 'package:cs4800_classproject/Pages/Login/loginmain.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const LoginMain()),
+      MaterialPageRoute(builder: (context) => const CreateAccount()),
     );
 
   }

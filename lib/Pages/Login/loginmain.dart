@@ -44,7 +44,9 @@ class _LoginMainState extends State<LoginMain> {
               hintText: 'Enter secure password'),
             ),
           ),
-          TextButton(onPressed: (){}, child: const Text(
+          TextButton(onPressed: (){
+
+          }, child: const Text(
             'Forgot Password',
             style: TextStyle(color: Colors.blue, fontSize: 15),
           ),),
