@@ -2,7 +2,8 @@ import '../Classes/listingentry.dart';
 import '../Classes/photo.dart';
 import '../Classes/user.dart';
 
-User loggedInUser = User(2, 'Chris', 'male', '123 Some st, Anaheim', '123Pass', 'myCryptoAddress');
+User loggedInUser = User(2, 'Chris', 'male', '123 Some st, Anaheim', '123Pass', 'myCryptoAddress','tomes@cpp.edu');
+User idiotUser = User(-1, 'Idiot', '0', '0', '0', '0','0');
 ListingEntry listing1 = ListingEntry(1, 1, "First Listing", "This is my first listing", "nFTTokenNum", 10000.0);
 ListingEntry listing2 = ListingEntry(2, 1, "Second Listing", "This is my second listing", "nFTTokenNum", 20000.0);
 ListingEntry listing3 = ListingEntry(3, 2, "Third Listing", "This is my third listing", "nFTTokenNum", 30000.0);
@@ -20,7 +21,7 @@ Photo photo10 = Photo(10, 3,'https://miro.medium.com/max/980/1*3iesg_sr8kC6NYN2i
 
 List<ListingEntry> myList= [listing1,listing2,listing3];
 List<Photo> photos = [photo1,photo2,photo3,photo4,photo5,photo6,photo7,photo8,photo9,photo10];
-
+List<User>  users = [loggedInUser, idiotUser];
 List<ListingEntry> searchListings(String searchWord){
   if(searchWord == ''){
     return myList;
@@ -68,4 +69,15 @@ List<ListingEntry> getMyListings(User me){
 List<Photo> addPhoto(Photo photo){
   photos.add(photo);
   return photos;
+}
+
+User checkPassword(String email, String pass){
+  for(var i = 0; i < users.length; ++i){
+    if(users[i].email == email){
+      if(users[i].password == pass){
+        return users[i];
+      }
+    }
+  }
+  return idiotUser; //= User(2, 'Chris', 'male', '123 Some st, Anaheim', '123Pass', 'myCryptoAddress');
 }

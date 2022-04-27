@@ -70,7 +70,7 @@ class _DashboardTrendingState extends State<DashboardTrending> {
                     child: TextButton(onPressed: (){
                       Navigator.pushReplacement(context,
                           PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) => DashboardMain(),
+                            pageBuilder: (context, animation1, animation2) => DashboardMain(user: loggedInUser,),
                             transitionDuration: Duration(seconds: 0)));
                     }, child: const Text(
                       'All',
