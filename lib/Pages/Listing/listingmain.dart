@@ -16,7 +16,7 @@ class Listing extends StatelessWidget {
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     final verticalPadding = EdgeInsets.symmetric(vertical: padding);
     final allPadding =
-        EdgeInsets.symmetric(vertical: padding, horizontal: padding);
+    EdgeInsets.symmetric(vertical: padding, horizontal: padding);
     double width = MediaQuery.of(context).size.width;
     return MaterialApp(
       home: Scaffold(
@@ -92,7 +92,7 @@ class Listing extends StatelessWidget {
                       Expanded(
                         child: IconButton(
                             onPressed: () {
-                              Navigator.pop(context, MaterialPageRoute(builder: (context) => DashboardMain()));
+                              Navigator.pop(context, MaterialPageRoute(builder: (context) => DashboardMain(user: loggedInUser,)));
                             },
                             icon: const Icon(Icons.home)),
                       ),

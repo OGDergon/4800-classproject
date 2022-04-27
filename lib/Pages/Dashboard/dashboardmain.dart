@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //import 'package:substring_highlight/substring_highlight.dart';
 
+import '../../Classes/user.dart';
 import '../Listing/listingmain.dart';
 
 //Our local list of values that only persist during run time.
@@ -15,13 +16,13 @@ import '../Listing/listingmain.dart';
 //List<Photo> photos = findPhotos();
 
 class DashboardMain extends StatefulWidget {
-  const DashboardMain({Key? key}) : super(key: key);
+  const DashboardMain({Key? key, required this.user}) : super(key: key);
+  final User user;
   @override
   _DashboardMainState createState() => _DashboardMainState();
 }
 List<ListingEntry> searchlists = searchListings('');
 class _DashboardMainState extends State<DashboardMain> {
-
   static const itemCount = 3;
 
   @override
