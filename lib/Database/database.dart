@@ -27,7 +27,9 @@ List<ListingEntry> searchListings(String searchWord){
   }
   List<ListingEntry> myListings = [];
   for(var i = 0; i < myList.length; ++i){
-    if(myList[i].title.contains(searchWord)){
+    var listingString = myList[i].title.toLowerCase();
+    var searchString = searchWord.toLowerCase();
+    if(listingString.contains(searchString)){
       myListings.add(myList[i]);
     }
   }

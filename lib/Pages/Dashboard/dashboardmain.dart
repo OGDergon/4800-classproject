@@ -6,6 +6,7 @@ import 'package:cs4800_classproject/Pages/Dashboard/dashboardyourlistings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+//import 'package:substring_highlight/substring_highlight.dart';
 
 import '../Listing/listingmain.dart';
 
