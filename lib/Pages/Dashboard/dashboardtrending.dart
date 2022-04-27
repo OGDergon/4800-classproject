@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../Classes/photo.dart';
+import '../../Database/database.dart';
 import '../Listing/listingmain.dart';
 
 
@@ -20,6 +22,7 @@ class _DashboardTrendingState extends State<DashboardTrending> {
   @override
 
   Widget build(BuildContext context) {
+    final List<Photo> photos = findPhotos();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     double width = MediaQuery.of(context).size.width;
@@ -103,65 +106,37 @@ class _DashboardTrendingState extends State<DashboardTrending> {
             Expanded(
               flex: 60,
               child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(0.4),
-                            child: InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
-                                );
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6.0),
-                                child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                  width: width * .3,
-                                  height: width * .3,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(0.4),
-                            child: InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
-                                );
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6.0),
-                                child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                  width: width * .3,
-                                  height: width * .3,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(0.4),
-                            child: InkWell(
-                              onTap: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Listing()),
-                                );
-                              }
-                              ,child: ClipRRect(
+                  itemCount: myList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: myList[index],)),);
+                        },
+                        child: Row(
+                          children: [
+                            ClipRRect(
                               borderRadius: BorderRadius.circular(6.0),
-                              child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                width: width * .3,
-                                height: width * .3,
+                              child: Image.network(getPhoto(myList[index].listingID).first.photoUrl,fit: BoxFit.cover,
+                                width: width * .4,
+                                height: width * .4,
                               ),
                             ),
-                            ),
-                          ),
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(myList[index].title),
+                                  Text(myList[index].price.toString()),
+                                  Text(myList[index].description)
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-
                     );
                   }
               ),

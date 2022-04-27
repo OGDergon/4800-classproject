@@ -1,5 +1,6 @@
 import 'package:cs4800_classproject/Classes/listingentry.dart';
 import 'package:cs4800_classproject/Classes/photo.dart';
+import 'package:cs4800_classproject/Database/database.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardtrending.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardyourlistings.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,13 +9,16 @@ import 'package:flutter/services.dart';
 
 import '../Listing/listingmain.dart';
 
+//Our local list of values that only persist during run time.
+//This will not persist if app is closed.
+//List<Photo> photos = findPhotos();
 
 class DashboardMain extends StatefulWidget {
   const DashboardMain({Key? key}) : super(key: key);
   @override
   _DashboardMainState createState() => _DashboardMainState();
 }
-
+List<ListingEntry> searchlists = searchListings('');
 class _DashboardMainState extends State<DashboardMain> {
 
   static const itemCount = 3;
@@ -22,9 +26,6 @@ class _DashboardMainState extends State<DashboardMain> {
   @override
 
   Widget build(BuildContext context) {
-
-    ListingEntry listing1 = ListingEntry(listingID: 1, sellerID: 1, title: "First Listing", description: "This is my first listing", nFTToken: "nFTTokenNum", price: 10000.0);
-    Photo photo1 = Photo(photoId: 1, photoUrl: 'https://ichef.bbci.co.uk/news/640/cpsprodpb/DBB7/production/_122074265_hi071843849.jpg', listingID: 1);
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
@@ -50,7 +51,8 @@ class _DashboardMainState extends State<DashboardMain> {
             border: Border.all(color: Colors.black),
             borderRadius: BorderRadius.circular(8),),
           child: Row(
-            children: const [Expanded(
+            children: [
+              Expanded(
                 flex: 10,
                 child: Icon(Icons.search)),
               Expanded(
@@ -59,6 +61,9 @@ class _DashboardMainState extends State<DashboardMain> {
                   decoration: InputDecoration.collapsed(
                     hintText: 'Search...'
                   ),
+                    onChanged: (String text){
+                    searchlists = searchListings(text);
+                    }
                 ),
               ),
             ],
@@ -109,65 +114,37 @@ class _DashboardMainState extends State<DashboardMain> {
       Expanded(
         flex: 60,
         child: ListView.builder(
-                      itemCount: 10,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(0.4),
-                                child: InkWell(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
-                                    );
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(6.0),
-                                    child: Image.network('https://ichef.bbci.co.uk/news/640/cpsprodpb/DBB7/production/_122074265_hi071843849.jpg',fit: BoxFit.cover,
-                                      width: width * .3,
-                                      height: width * .3,
+                      itemCount: searchlists.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: InkWell(
+                                    onTap: (){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: searchlists[index],)),);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(6.0),
+                                          child: Image.network(getPhoto(searchlists[index].listingID).first.photoUrl,fit: BoxFit.cover,
+                                            width: width * .4,
+                                            height: width * .4,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 16.0),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(searchlists[index].title),
+                                              Text(searchlists[index].price.toString()),
+                                              Text(searchlists[index].description)
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(0.4),
-                                child: InkWell(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
-                                  );
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(6.0),
-                                    child: Image.network('https://cdn.vox-cdn.com/thumbor/2xj1ySLIz1EZ49NvSsPzq8Itjyg=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/23084330/bored_ape_nft_accidental_.jpg',fit: BoxFit.cover,
-                                      width: width * .3,
-                                      height: width * .3,
-                                    ),
-                                    ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(0.4),
-                                child: InkWell(
-                                  onTap: (){
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => Listing()),
-                                    );
-                                  }
-                                  ,child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(6.0),
-                                    child: Image.network('https://i.guim.co.uk/img/media/ef8492feb3715ed4de705727d9f513c168a8b196/37_0_1125_675/master/1125.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d456a2af571d980d8b2985472c262b31',fit: BoxFit.cover,
-                                      width: width * .3,
-                                      height: width * .3,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
                         );
                       }
                     ),
@@ -182,7 +159,11 @@ class _DashboardMainState extends State<DashboardMain> {
             ),
             Expanded(
               child: IconButton(onPressed: (){
-
+                setState(() {
+                  addPhoto(Photo(15, 15, 'https://www.nrn.com/sites/nrn.com/files/styles/article_featured_retina/public/chefpizza_0.jpg?itok=0lJB0GeU'));
+                  addListing(ListingEntry(15, 1, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));
+                });
+                print(photos.length);
               }, icon: const Icon(Icons.add_photo_alternate)),
             ),
             Expanded(

@@ -3,10 +3,9 @@ class Photo{
   int listingID = 0;
   String photoUrl= '';
 
-  Photo({
-    required photoId,
-    required listingID,
-    required photoUrl
-  });
+  String getPhoto(){
+    return photoUrl;
+  }
+  Photo(this.photoID, this.listingID, this.photoUrl);
 
 }

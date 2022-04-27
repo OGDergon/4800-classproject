@@ -1,6 +1,8 @@
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardmain.dart';
 import 'package:flutter/material.dart';
 
+import 'Classes/photo.dart';
+import 'Database/database.dart';
 void main() {
   runApp(const MyApp());
 }

@@ -1,13 +1,13 @@
 class ListingEntry{
 
-  ListingEntry({
-    required int listingID,
-    required int sellerID,
-    required String title,
-    required String description,
-    required String nFTToken,
-    required double price,
-});
+  ListingEntry(
+      this.listingID,
+      this.sellerID,
+      this.title,
+      this.description,
+      this.nFTToken,
+      this.price,
+);
   int listingID = 0;
   int sellerID = 0;
   String title = '';

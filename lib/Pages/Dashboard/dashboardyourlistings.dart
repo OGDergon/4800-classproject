@@ -1,9 +1,12 @@
+import 'package:cs4800_classproject/Classes/listingentry.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardmain.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardtrending.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../Classes/photo.dart';
+import '../../Database/database.dart';
 import '../Listing/listingmain.dart';
 
 
@@ -20,6 +23,7 @@ class _DashboardListingState extends State<DashboardListing> {
   @override
 
   Widget build(BuildContext context) {
+    List<ListingEntry> lists = getMyListings(loggedInUser);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     double width = MediaQuery.of(context).size.width;
@@ -103,65 +107,37 @@ class _DashboardListingState extends State<DashboardListing> {
             Expanded(
               flex: 60,
               child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(0.4),
-                            child: InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
-                                );
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6.0),
-                                child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                  width: width * .3,
-                                  height: width * .3,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(0.4),
-                            child: InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing()),
-                                );
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6.0),
-                                child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                  width: width * .3,
-                                  height: width * .3,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(0.4),
-                            child: InkWell(
-                              onTap: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Listing()),
-                                );
-                              }
-                              ,child: ClipRRect(
+                  itemCount: lists.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: lists[index],)),);
+                        },
+                        child: Row(
+                          children: [
+                            ClipRRect(
                               borderRadius: BorderRadius.circular(6.0),
-                              child: Image.asset('assets/images/image.jpg',fit: BoxFit.cover,
-                                width: width * .3,
-                                height: width * .3,
+                              child: Image.network(getPhoto(lists[index].listingID).first.photoUrl,fit: BoxFit.cover,
+                                width: width * .4,
+                                height: width * .4,
                               ),
                             ),
-                            ),
-                          ),
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(myList[index].title),
+                                  Text(myList[index].price.toString()),
+                                  Text(myList[index].description)
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-
                     );
                   }
               ),

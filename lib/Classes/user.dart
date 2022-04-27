@@ -1,14 +1,5 @@
 class User {
-
-  User({
-    required int userId,
-    required String name,
-    required String gender,
-    required String address,
-    required String password,
-    required String cryptoWalletAddress
-  });
-
+  User(this.userId, this.name, this.gender, this.address, this.password, this.cryptoWalletAddress);
 
   int userId = 0;
   String name = '';

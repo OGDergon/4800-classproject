@@ -1,10 +1,17 @@
+import 'package:cs4800_classproject/Classes/listingentry.dart';
+import 'package:cs4800_classproject/Database/database.dart';
 import 'package:flutter/material.dart';
 
+import '../../Classes/photo.dart';
 import '../Dashboard/dashboardmain.dart';
 
 class Listing extends StatelessWidget {
+  const Listing({Key? key, required this.listing}) : super(key: key);
+  final ListingEntry listing;
   @override
   Widget build(BuildContext context) {
+    Photo photo = getPhoto(listing.listingID).first;
+    print(photo.getPhoto());
     double padding = 16;
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     final verticalPadding = EdgeInsets.symmetric(vertical: padding);
@@ -33,7 +40,7 @@ class Listing extends StatelessWidget {
                           width: 500.0,
                           margin: EdgeInsets.all(20.0),
                           color: Colors.white,
-                          child: Image.asset('assets/images/image.jpg'))),
+                          child: Image.network(photo.photoUrl,fit: BoxFit.cover))),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
