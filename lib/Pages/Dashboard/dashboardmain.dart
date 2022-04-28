@@ -171,7 +171,7 @@ class _DashboardMainState extends State<DashboardMain> {
             ),
             Expanded(
               child: IconButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileMain(),));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => ProfileMain(user: loggedInUser,),));
               },
                   icon: const Icon(Icons.person)),
             ),

@@ -3,14 +3,48 @@ import 'package:cs4800_classproject/Pages/Dashboard/dashboardmain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../Classes/user.dart';
+
 
 class ProfileMain extends StatefulWidget {
-  const ProfileMain({Key? key}) : super(key: key);
+  const ProfileMain({Key? key, required this.user}) : super(key: key);
+  final User user;
   @override
   _ProfileMainState createState() => _ProfileMainState();
 }
 
 class _ProfileMainState extends State<ProfileMain> {
+  void _handleSubmitted() {}
+
+  late bool _passwordVisible;
+  late bool _walletAddressVisible;
+
+  final TextEditingController _nameController = TextEditingController();
+  String name = loggedInUser.name;
+  final TextEditingController _emailController = TextEditingController();
+  String email = loggedInUser.email;
+  final TextEditingController _genderController = TextEditingController();
+  String gender = loggedInUser.gender;
+  final TextEditingController _addressController = TextEditingController();
+  String address = loggedInUser.address;
+  final TextEditingController _passController = TextEditingController();
+  String password = loggedInUser.password;
+  final TextEditingController _cryptoWalletController = TextEditingController();
+  String walletAddress = loggedInUser.cryptoWalletAddress;
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+    _walletAddressVisible = false;
+    _nameController.text = name;
+    _addressController.text = address;
+    _emailController.text = email;
+    _genderController.text = gender;
+    _passController.text = password;
+    _cryptoWalletController.text = walletAddress;
+    return super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -29,7 +63,7 @@ class _ProfileMainState extends State<ProfileMain> {
                   children: [
                     Expanded(
                       child: IconButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => DashboardMain(user: loggedInUser,)));
+                        Navigator.pop(context);
                       }, icon: const Icon(Icons.arrow_back)),
                     ),
                     Expanded(
@@ -64,7 +98,7 @@ class _ProfileMainState extends State<ProfileMain> {
                       ),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                       padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
                       child: TextField(
                         decoration: InputDecoration(
@@ -72,19 +106,13 @@ class _ProfileMainState extends State<ProfileMain> {
                             labelText: 'Name',
                             hintText: 'Edit Name'
                         ),
+                        controller: _nameController,
+                        onChanged: (String value) {
+                          name = value;
+                        },
                       )
                   ),
-                  const Padding(
-                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Username',
-                            hintText: 'Edit Username'
-                        ),
-                      )
-                  ),
-                  const Padding(
+                  Padding(
                       padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
                       child: TextField(
                         decoration: InputDecoration(
@@ -92,9 +120,13 @@ class _ProfileMainState extends State<ProfileMain> {
                             labelText: 'Gender',
                             hintText: 'Edit Gender'
                         ),
+                        controller: _genderController,
+                        onChanged: (String value) {
+                          gender = value;
+                        },
                       )
                   ),
-                  const Padding(
+                  Padding(
                       padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
                       child: TextField(
                         decoration: InputDecoration(
@@ -102,9 +134,13 @@ class _ProfileMainState extends State<ProfileMain> {
                             labelText: 'Shipping Address',
                             hintText: 'Edit Shipping Address'
                         ),
+                        controller: _addressController,
+                        onChanged: (String value) {
+                          address = value;
+                        },
                       )
                   ),
-                  const Padding(
+                  Padding(
                       padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
                       child: TextField(
                         decoration: InputDecoration(
@@ -112,15 +148,36 @@ class _ProfileMainState extends State<ProfileMain> {
                             labelText: 'Email',
                             hintText: 'Edit Email'
                         ),
+                        controller: _emailController,
+                        onChanged: (String value) {
+                          email = value;
+                        },
                       )
                   ),
-                  const Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                  Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
                     child: TextField(
-                      obscureText: true,
+                      obscureText: !_passwordVisible,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Password',
-                          hintText: 'Edit Password'),
+                          hintText: 'Edit Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: (){
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                          )
+                      ),
+                      controller: _passController,
+                      onChanged: (String value) {
+                        password = value;
+                      },
                     ),
                   ),
                   SizedBox(height: 20),
@@ -175,14 +232,30 @@ class _ProfileMainState extends State<ProfileMain> {
                       ),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                  Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
                     child: TextField(
-
-                      obscureText: true,
+                      obscureText: !_walletAddressVisible,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Wallet Address',
-                          hintText: 'Edit Wallet Address'),
+                          hintText: 'Edit Wallet Address',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _walletAddressVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: (){
+                              setState(() {
+                                _walletAddressVisible = !_walletAddressVisible;
+                              });
+                            },
+                          )
+                      ),
+                      controller: _cryptoWalletController,
+                      onChanged: (String value) {
+                        walletAddress = value;
+                      },
                     ),
                   ),
                  ],
@@ -199,7 +272,7 @@ class _ProfileMainState extends State<ProfileMain> {
                 ),
                 child: TextButton(
                   onPressed: () {
-
+                    _handleSubmitted();
                   },
                   child: const Text(
                     'Save Changes',

@@ -104,7 +104,7 @@ class Listing extends StatelessWidget {
                       ),
                       Expanded(
                         child: IconButton(
-                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileMain(),));
+                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: loggedInUser,),));
                               }, icon: const Icon(Icons.person)),
                       ),
                     ],
