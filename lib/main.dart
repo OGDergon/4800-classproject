@@ -1,4 +1,4 @@
-import 'package:cs4800_classproject/Pages/Profile/profilemain.dart';
+import 'package:cs4800_classproject/Pages/Login/loginmain.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -52,10 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ProfileMain()),
+      MaterialPageRoute(builder: (context) => const LoginMain()),
     );
+
   }
 
   @override
