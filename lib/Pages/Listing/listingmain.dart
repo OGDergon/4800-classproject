@@ -23,29 +23,29 @@ class Listing extends StatelessWidget {
           backgroundColor: Colors.white,
           body: Column(
             children: [
-              Padding(
-                padding: allPadding,
-                child: SafeArea(
-                  child: Text('Listing',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30)),
+              SafeArea(
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DashboardMain(
+                                        user: loggedInUser,
+                                      )));
+                        },
+                        icon: const Icon(Icons.arrow_back)),
+                    Padding(
+                      padding: allPadding,
+                      child: Text('Listing',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30)),
+                    ),
+                  ],
                 ),
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DashboardMain(
-                                      user: loggedInUser,
-                                    )));
-                      },
-                      icon: const Icon(Icons.arrow_back)),
-                ],
               ),
               Expanded(
                 flex: 90,
@@ -122,8 +122,8 @@ class Listing extends StatelessWidget {
                   // ),
 
                   Container(
-                    height: 120,
-                    width: 400,
+                    height: 100,
+                    width: 350,
                     padding: const EdgeInsets.all(10.0),
                     decoration:
                         BoxDecoration(border: Border.all(color: Colors.black)),
@@ -140,7 +140,7 @@ class Listing extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.0),
                       child: Container(
                         height: 50,
-                        width: 400,
+                        width: 350,
                         child: TextButton(
                           child: Text('Buy',
                               style:
