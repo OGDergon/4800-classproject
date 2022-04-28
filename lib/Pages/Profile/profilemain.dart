@@ -1,3 +1,5 @@
+import 'package:cs4800_classproject/Database/database.dart';
+import 'package:cs4800_classproject/Pages/Dashboard/dashboardmain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,7 +29,7 @@ class _ProfileMainState extends State<ProfileMain> {
                   children: [
                     Expanded(
                       child: IconButton(onPressed: (){
-
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => DashboardMain(user: loggedInUser,)));
                       }, icon: const Icon(Icons.arrow_back)),
                     ),
                     Expanded(
@@ -214,7 +216,7 @@ class _ProfileMainState extends State<ProfileMain> {
                   children: [
                     Expanded(
                       child: IconButton(onPressed: (){
-
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => DashboardMain(user: loggedInUser,)));
                       }, icon: const Icon(Icons.home)),
                     ),
                     Expanded(
@@ -223,9 +225,7 @@ class _ProfileMainState extends State<ProfileMain> {
                       }, icon: const Icon(Icons.add_photo_alternate)),
                     ),
                     Expanded(
-                      child: IconButton(onPressed: (){
-
-                      }, icon: const Icon(Icons.person)),
+                      child: IconButton(onPressed: null, icon: const Icon(Icons.person)),
                     ),
                   ],
                 ))

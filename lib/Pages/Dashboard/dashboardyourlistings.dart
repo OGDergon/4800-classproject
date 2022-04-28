@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import '../../Classes/photo.dart';
 import '../../Database/database.dart';
 import '../Listing/listingmain.dart';
+import '../Profile/profilemain.dart';
 
 
 class DashboardListing extends StatefulWidget {
@@ -157,8 +158,9 @@ class _DashboardListingState extends State<DashboardListing> {
                     ),
                     Expanded(
                       child: IconButton(onPressed: (){
-
-                      }, icon: const Icon(Icons.person)),
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileMain(),));
+                      },
+                          icon: const Icon(Icons.person)),
                     ),
                   ],
                 ))
