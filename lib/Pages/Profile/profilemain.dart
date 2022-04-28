@@ -82,14 +82,15 @@ class _ProfileMainState extends State<ProfileMain> {
                         ),
                       )
                   ),
-                  const Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Password',
-                          hintText: 'Edit Password'),
-                    ),
+                  const Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Gender',
+                            hintText: 'Edit Gender'
+                        ),
+                      )
                   ),
                   const Padding(
                       padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
@@ -100,6 +101,25 @@ class _ProfileMainState extends State<ProfileMain> {
                             hintText: 'Edit Shipping Address'
                         ),
                       )
+                  ),
+                  const Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Email',
+                            hintText: 'Edit Email'
+                        ),
+                      )
+                  ),
+                  const Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                    child: TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Password',
+                          hintText: 'Edit Password'),
+                    ),
                   ),
                   SizedBox(height: 20),
 
@@ -137,7 +157,7 @@ class _ProfileMainState extends State<ProfileMain> {
                       child: TextField(
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'CSV',
+                            labelText: 'CSC',
                             hintText: 'Enter credit card security code'
                         ),
                       )
@@ -166,21 +186,23 @@ class _ProfileMainState extends State<ProfileMain> {
                  ],
               ),
             ),
-            SizedBox(height: 10),
             //save changes button
-            Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)
-              ),
-              child: TextButton(
-                onPressed: () {
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 50,
+                width: 250,
+                decoration: BoxDecoration(
+                    color: Colors.blue, borderRadius: BorderRadius.circular(20)
+                ),
+                child: TextButton(
+                  onPressed: () {
 
-                },
-                child: const Text(
-                  'Save Changes',
-                  style: TextStyle (color: Colors.white, fontSize: 25),
+                  },
+                  child: const Text(
+                    'Save Changes',
+                    style: TextStyle (color: Colors.white, fontSize: 25),
+                  ),
                 ),
               ),
             ),
