@@ -99,7 +99,7 @@ class Listing extends StatelessWidget {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 130.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 110.0),
                     child: Row(
                       children: [
                         Text('Price', style: TextStyle(fontSize: 24)),
