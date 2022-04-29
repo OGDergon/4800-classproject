@@ -1,6 +1,7 @@
 import 'package:cs4800_classproject/Database/database.dart';
 import 'package:flutter/material.dart';
 
+import '../../Classes/user.dart';
 import '../Dashboard/dashboardmain.dart';
 
 class LoginMain extends StatefulWidget {
@@ -68,9 +69,9 @@ class _LoginMainState extends State<LoginMain> {
             ),
             child: TextButton(
               onPressed: () {
-
-                if(checkPassword(userEmail, userPass) != idiotUser){
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => DashboardMain(user: loggedInUser,)));
+                User tempUser = checkPassword(userEmail, userPass);
+                if(tempUser != idiotUser){
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => DashboardMain(user: tempUser,)));
                 }
               },
               child: const Text(

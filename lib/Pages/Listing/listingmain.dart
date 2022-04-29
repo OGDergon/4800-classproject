@@ -11,7 +11,6 @@ class Listing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Photo photo = getPhoto(listing.listingID).first;
-    print(photo.getPhoto());
     double padding = 16;
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     final verticalPadding = EdgeInsets.symmetric(vertical: padding);
