@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../Classes/photo.dart';
 import '../Dashboard/dashboardmain.dart';
+import '../Profile/profilemain.dart';
 
 class Listing extends StatelessWidget {
   const Listing({Key? key, required this.listing}) : super(key: key);
@@ -102,7 +103,8 @@ class Listing extends StatelessWidget {
                       ),
                       Expanded(
                         child: IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.person)),
+                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: loggedInUser,),));
+                              }, icon: const Icon(Icons.person)),
                       ),
                     ],
                   ))
