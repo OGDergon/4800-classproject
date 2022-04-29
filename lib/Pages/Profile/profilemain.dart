@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../Classes/user.dart';
+import '../Login/loginmain.dart';
 
 
 class ProfileMain extends StatefulWidget {
@@ -14,8 +15,12 @@ class ProfileMain extends StatefulWidget {
 }
 
 class _ProfileMainState extends State<ProfileMain> {
-  void _handleSubmitted() {}
-
+  void _handleSubmitted() {
+  User savedUser = User(widget.user.userId, name, gender, address, password, walletAddress,email);
+  updateUser(savedUser);
+  Navigator.of(context).pop();
+  }
+  bool onChanged = false;
   late bool _passwordVisible;
   late bool _walletAddressVisible;
 
@@ -36,12 +41,12 @@ class _ProfileMainState extends State<ProfileMain> {
   void initState() {
     _passwordVisible = false;
     _walletAddressVisible = false;
-    _nameController.text = name;
-    _addressController.text = address;
-    _emailController.text = email;
-    _genderController.text = gender;
-    _passController.text = password;
-    _cryptoWalletController.text = walletAddress;
+    _nameController.text = widget.user.name;
+    _addressController.text = widget.user.address;
+    _emailController.text = widget.user.email;
+    _genderController.text = widget.user.gender;
+    _passController.text = widget.user.password;
+    _cryptoWalletController.text = widget.user.cryptoWalletAddress;
     return super.initState();
   }
 
@@ -53,35 +58,49 @@ class _ProfileMainState extends State<ProfileMain> {
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "Profile",
+          style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold
+          ),
+        ),
+        leading: IconButton(onPressed: () {
+          if(onChanged == false){
+            Navigator.of(context).pop();
+          }else{
+           showDialog(context: context, builder: (_) => AlertDialog(
+             title: Text('Your information has been modified.'),
+             content: SingleChildScrollView(
+               child: ListBody(
+                 children: [
+                   Text('Save changes?')
+                 ],
+               ),
+             ),
+             actions: [
+               TextButton(onPressed: (){
+                 _handleSubmitted();
+                 Navigator.of(context).pop();
+               }, child: Text('Save and Continue')),
+               TextButton(onPressed: (){
+                 Navigator.of(context).pop();
+                 Navigator.of(context).pop();
+               }, child: Text('Discard Changes')),
+               TextButton(onPressed: (){
+                 Navigator.of(context).pop();
+               }, child: Text('Cancel')),
+             ],
+           ));
+          }
+
+        }, icon: new Icon(Icons.arrow_back)),
+      ),
       body: Column(
           children: [
             //top navigation: back to dashboard(?), profile header, settings cog
-            Expanded(
-                flex: 6,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: IconButton(onPressed: (){
-                        Navigator.pop(context);
-                      }, icon: const Icon(Icons.arrow_back)),
-                    ),
-                    Expanded(
-                      child: const Text(
-                        "Profile",
-                        style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: IconButton(onPressed: (){
-
-                      }, icon: const Icon(Icons.settings)),
-                    ),
-                  ],
-                )),
             //text fields
             Expanded(
               flex: 60,
@@ -109,6 +128,7 @@ class _ProfileMainState extends State<ProfileMain> {
                         controller: _nameController,
                         onChanged: (String value) {
                           name = value;
+                          onChanged=true;
                         },
                       )
                   ),
@@ -123,6 +143,7 @@ class _ProfileMainState extends State<ProfileMain> {
                         controller: _genderController,
                         onChanged: (String value) {
                           gender = value;
+                          onChanged=true;
                         },
                       )
                   ),
@@ -137,6 +158,7 @@ class _ProfileMainState extends State<ProfileMain> {
                         controller: _addressController,
                         onChanged: (String value) {
                           address = value;
+                          onChanged=true;
                         },
                       )
                   ),
@@ -151,6 +173,7 @@ class _ProfileMainState extends State<ProfileMain> {
                         controller: _emailController,
                         onChanged: (String value) {
                           email = value;
+                          onChanged=true;
                         },
                       )
                   ),
@@ -177,6 +200,7 @@ class _ProfileMainState extends State<ProfileMain> {
                       controller: _passController,
                       onChanged: (String value) {
                         password = value;
+                        onChanged=true;
                       },
                     ),
                   ),
@@ -282,26 +306,6 @@ class _ProfileMainState extends State<ProfileMain> {
               ),
             ),
             //bottom navigation: home, create listing, profile
-            Expanded(
-                flex: 6,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: IconButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => DashboardMain(user: loggedInUser,)));
-                      }, icon: const Icon(Icons.home)),
-                    ),
-                    Expanded(
-                      child: IconButton(onPressed: (){
-
-                      }, icon: const Icon(Icons.add_photo_alternate)),
-                    ),
-                    Expanded(
-                      child: IconButton(onPressed: null, icon: const Icon(Icons.person)),
-                    ),
-                  ],
-                ))
           ]
       ),
     );

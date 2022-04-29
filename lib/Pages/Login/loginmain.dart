@@ -1,5 +1,6 @@
 import 'package:cs4800_classproject/Database/database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../Classes/user.dart';
 import '../Dashboard/dashboardmain.dart';
@@ -15,6 +16,7 @@ class _LoginMainState extends State<LoginMain> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     String userPass = '';
     String userEmail = '';
     return Scaffold(

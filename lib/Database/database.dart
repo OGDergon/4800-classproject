@@ -3,7 +3,7 @@ import '../Classes/photo.dart';
 import '../Classes/user.dart';
 
 User loggedInUser = User(2, 'Chris', 'male', '123 Some st, Anaheim', '123Pass', 'myCryptoAddress','tomes@cpp.edu');
-User otherUser = User(1, 'Patrick', 'male', '123 Some st, Anaheim', '123', 'myCryptoAddress','pat@gmail.com');
+User otherUser = User(1, 'Patrick', 'male', '123 diamond st, Anaheim', '123', 'myCryptoAddress','pat@gmail.com');
 User idiotUser = User(-1, 'Idiot', '0', '0', '0', '0','0');
 ListingEntry listing1 = ListingEntry(1, 1, "First Listing", "This is my first listing", "nFTTokenNum", 10000.0);
 ListingEntry listing2 = ListingEntry(2, 1, "Second Listing", "This is my second listing", "nFTTokenNum", 20000.0);
@@ -24,7 +24,19 @@ List<ListingEntry> myList= [listing1,listing2,listing3];
 List<Photo> photos = [photo1,photo2,photo3,photo4,photo5,photo6,photo7,photo8,photo9,photo10];
 List<User>  users = [loggedInUser, idiotUser, otherUser];
 
-
+void updateUser(User newUser){
+  for(var i = 0; i < users.length; ++i){
+    if(users[i].userId == newUser.userId){
+      users[i].name = newUser.name;
+      users[i].gender = newUser.gender;
+      users[i].address = newUser.address;
+      users[i].password = newUser.password;
+      users[i].cryptoWalletAddress = newUser.cryptoWalletAddress;
+      users[i].email = newUser.email;
+      return;
+    }
+  }
+}
 List<ListingEntry> searchListings(String searchWord){
   print('searching listings');
   if(searchWord == ''){

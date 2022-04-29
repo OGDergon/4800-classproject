@@ -10,6 +10,7 @@ import '../../Classes/user.dart';
 import '../../Database/database.dart';
 import '../Listing/listingmain.dart';
 import '../Login/loginmain.dart';
+import '../Profile/profilemain.dart';
 
 
 class DashboardTrending extends StatefulWidget {
@@ -200,7 +201,7 @@ class _DashboardTrendingState extends State<DashboardTrending> {
                     ),
                     Expanded(
                       child: IconButton(onPressed: () {
-                        Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginMain()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: widget.user,)),);
                       }, icon: const Icon(Icons.person)),
                     ),
                   ],

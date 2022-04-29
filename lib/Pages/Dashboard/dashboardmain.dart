@@ -3,6 +3,7 @@ import 'package:cs4800_classproject/Classes/photo.dart';
 import 'package:cs4800_classproject/Database/database.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardtrending.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardyourlistings.dart';
+import 'package:cs4800_classproject/Pages/Profile/profilemain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -202,7 +203,7 @@ class _DashboardMainState extends State<DashboardMain> {
             ),
             Expanded(
               child: IconButton(onPressed: () {
-                Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginMain()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: widget.user,)),);
               }, icon: const Icon(Icons.person)),
             ),
           ],
