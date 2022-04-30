@@ -4,6 +4,7 @@ import 'package:cs4800_classproject/Database/database.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardtrending.dart';
 import 'package:cs4800_classproject/Pages/Dashboard/dashboardyourlistings.dart';
 import 'package:cs4800_classproject/Pages/Profile/profilemain.dart';
+import 'package:cs4800_classproject/Pages/Sell/sellmain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -205,8 +206,10 @@ class _DashboardMainState extends State<DashboardMain> {
             Expanded(
               child: IconButton(onPressed: (){
                 setState(() {
-                  addPhoto(Photo(photoID:15, listingID:15, imagePath: 'assets/images/image.jpg'));
-                  addListing(ListingEntry(15, thisUser.userId, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SellPageUpload(user: thisUser,)),);
+                  //below code will generate a listing for sale.
+                  //addPhoto(Photo(photoID:15, listingID:15, imagePath: 'assets/images/image.jpg'));
+                  //addListing(ListingEntry(15, thisUser.userId, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));
                 });
 
               }, icon: const Icon(Icons.add_photo_alternate)),
