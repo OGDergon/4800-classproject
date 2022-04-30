@@ -81,6 +81,18 @@ List<ListingEntry> getMyListings(User me){
   }
       return myListings;
 }
+int generateListingID(){
+  //will do this differently to handle async calls from mult devices.
+  //reserve the spot on list prior to completion so listingID isnt more than once.
+  int maxID= 1;
+  for(var i = 0; i < myList.length; ++i){
+    if(myList[i].listingID >maxID){
+      maxID = myList[i].listingID;
+    }
+  }
+  return maxID + 1;
+}
+
 List<ListingEntry> getMyBuys(User me){
   List<ListingEntry> myListings = [];
 

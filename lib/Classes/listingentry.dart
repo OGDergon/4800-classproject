@@ -15,6 +15,9 @@ class ListingEntry{
   String description = '';
   String nFTToken = '';
   double price = 0.0;
+  //used to hide listings from searches prior to creation
+  //maybe even after sells
+  bool visible = false;
 
   void assignBuyer(int buyerID){
     this.buyerID = buyerID;

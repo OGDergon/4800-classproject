@@ -196,6 +196,9 @@ class _SellPagePriceState extends State<SellPagePrice> {
               Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
                 child: IconButton(
                   onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
                   },
                   iconSize: width * 0.05,
                   icon: const Icon(Icons.cancel_presentation_sharp),

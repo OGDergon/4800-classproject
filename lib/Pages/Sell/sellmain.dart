@@ -1,12 +1,16 @@
+import 'package:cs4800_classproject/Classes/listingentry.dart';
+import 'package:cs4800_classproject/Database/database.dart';
 import 'package:cs4800_classproject/Pages/Sell/selldescription.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
-class SellPageUpload extends StatefulWidget {
-  const SellPageUpload({Key? key}) : super(key: key);
+import '../../Classes/user.dart';
 
+class SellPageUpload extends StatefulWidget {
+  const SellPageUpload({Key? key, required this.user}) : super(key: key);
+  final User user;
   @override
   _SellPageUploadState createState() => _SellPageUploadState();
 }
@@ -14,6 +18,9 @@ class SellPageUpload extends StatefulWidget {
 class _SellPageUploadState extends State<SellPageUpload> {
   @override
   Widget build(BuildContext context) {
+    //this listing entry will be passed to all subsequent windows.
+    ListingEntry newListing = ListingEntry(generateListingID(), widget.user.userId, '', '', '', 0);
+
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     double padding = 16;
@@ -307,6 +314,7 @@ class _SellPageUploadState extends State<SellPageUpload> {
               Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
                   child: IconButton(
                     onPressed: () {
+                      Navigator.of(context).pop();
                     },
                     iconSize: width * 0.05,
                     icon: const Icon(Icons.cancel_presentation_sharp),
