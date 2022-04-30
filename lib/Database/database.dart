@@ -5,7 +5,7 @@ import '../Classes/user.dart';
 User loggedInUser = User(2, 'Chris', 'male', '123 Some st, Anaheim', '123Pass', 'myCryptoAddress','tomes@cpp.edu');
 User otherUser = User(1, 'Patrick', 'male', '123 diamond st, Anaheim', '123', 'myCryptoAddress','pat@gmail.com');
 User idiotUser = User(-1, 'Idiot', '0', '0', '0', '0','0');
-ListingEntry listing1 = ListingEntry(1, 1, "First Listing", "This is my first listing", "nFTTokenNum", 10000.0);
+ListingEntry listing1 = ListingEntry(1, 1, "First Listing", "A profession is a type of class commonly found in most RPGs and is central to the gameplay in Guild Wars. Each profession has an array of attributes and skills that help narrow a class's proficiency in order to perform a customized role that is determined by the player. The Warrior profession, for example, has access to the primary Strength attribute that increases their armor penetration with martial weapons, and is able to wear heavy armor providing the highest protection against physical damage of all professions. Elementalists, on the other hand, wear less protective armor, but can use their primary Energy Storage attribute to give them a much greater pool of energy than other professions.", "nFTTokenNum", 10000.0);
 ListingEntry listing2 = ListingEntry(2, 1, "Second Listing", "This is my second listing", "nFTTokenNum", 20000.0);
 ListingEntry listing3 = ListingEntry(3, 2, "Third Listing", "This asdasdasdasdasdis my third listingThis is my third listingThis is my third listingThis is my third listingThis is my third listing", "nFTTokenNum", 30000.0);
 
@@ -95,7 +95,27 @@ List<Photo> addPhoto(Photo photo){
   photos.add(photo);
   return photos;
 }
-
+User getSeller(ListingEntry listing){
+  for(var i = 0; i < users.length; ++i){
+    if(users[i].userId==listing.sellerID){
+      return users[i];
+    }
+  }
+  return users[0];
+}
+bool buyListing(ListingEntry listing,User user){
+  for(var i = 0; i < myList.length; ++i){
+    if(myList[i].listingID == listing.listingID){
+      if(myList[i].sellerID == user.userId){
+        return false;
+      }else{
+        myList[i].buyerID = user.userId;
+        return true;
+      }
+    }
+  }
+  return false;
+}
 User checkPassword(String email, String pass){
   for(var i = 0; i < users.length; ++i){
     if(users[i].email == email){

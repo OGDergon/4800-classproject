@@ -138,7 +138,7 @@ class _DashboardListingState extends State<DashboardListing> {
                             ),
                             child: InkWell(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: searchLists[index],)),);
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: searchLists[index], user: widget.user,)),);
                               },
                               child: Row(
                                 children: [
@@ -149,7 +149,18 @@ class _DashboardListingState extends State<DashboardListing> {
                                   Flexible(
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 16.0),
-                                      child: Column(
+                                      child:searchLists[index].buyerID!=-1?Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(searchLists[index].title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                                          Text("Sold for " + searchLists[index].price.toString()+ " ETH", style: TextStyle(fontSize: 18, color: Colors.red, fontStyle: FontStyle.italic),),
+                                          Text(searchLists[index].description,
+                                            overflow: TextOverflow.ellipsis,
+                                            softWrap: true,
+                                            maxLines: 4,
+                                          )
+                                        ],
+                                      ): Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(searchLists[index].title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),

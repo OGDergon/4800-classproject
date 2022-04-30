@@ -139,7 +139,7 @@ class _DashboardMainState extends State<DashboardMain> {
                                 ),
                                 child: InkWell(
                                           onTap: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: searchlists[index],)),);
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: searchlists[index], user: widget.user,)),);
                                           },
                                           child: Row(
                                             children: [
@@ -150,7 +150,17 @@ class _DashboardMainState extends State<DashboardMain> {
                                               Flexible(
                                                 child: Padding(
                                                   padding: const EdgeInsets.only(left: 16.0),
-                                                  child: Column(
+                                                  child: searchlists[index].buyerID !=-1 ? Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                    Text(searchlists[index].title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                                                    Text("SOLD", style: TextStyle(fontSize: 18, color: Colors.red,),),
+                                                    Text(searchlists[index].description,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      softWrap: true,
+                                                      maxLines: 4,
+                                                    )]):
+                                                  Column(
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       Text(searchlists[index].title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),

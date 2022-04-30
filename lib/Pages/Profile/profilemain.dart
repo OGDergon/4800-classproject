@@ -9,6 +9,7 @@ import '../Login/loginmain.dart';
 
 class ProfileMain extends StatefulWidget {
   const ProfileMain({Key? key, required this.user}) : super(key: key);
+  final int myVar =1;
   final User user;
   @override
   _ProfileMainState createState() => _ProfileMainState();
@@ -97,6 +98,27 @@ class _ProfileMainState extends State<ProfileMain> {
           }
 
         }, icon: new Icon(Icons.arrow_back)),
+        actions: [
+          IconButton(onPressed: (){
+            //Navigator.of(context).pop();
+            //Navigator.of(context).pop();
+            showDialog(context: context, builder: (_) => AlertDialog(
+              actionsAlignment: MainAxisAlignment.center,
+              actions: [
+                TextButton(onPressed: null,
+                    child: Text('Settings')),
+                TextButton(onPressed: (){
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                }, child: Text('Logout')),
+                TextButton(onPressed: (){
+                  Navigator.of(context).pop();
+                }, child: Text('Cancel')),
+              ],
+            ));
+          }, icon: Icon(Icons.settings))
+        ],
       ),
       body: Column(
           children: [

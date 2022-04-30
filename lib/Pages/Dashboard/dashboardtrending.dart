@@ -137,7 +137,7 @@ class _DashboardTrendingState extends State<DashboardTrending> {
                             ),
                             child: InkWell(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: searchLists[index],)),);
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Listing(listing: searchLists[index], user: widget.user,)),);
                               },
                               child: Row(
                                 children: [
