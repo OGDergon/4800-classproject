@@ -140,16 +140,14 @@ class _myListingState extends State<myListing> {
                   //   ],
                   // ),
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 110.0),
-                    child: Row(
-                      children: [
-                        Text('Price', style: TextStyle(fontSize: 24)),
-                        Text(new String.fromCharCodes(new Runes('\u0024')),
-                            style: TextStyle(fontSize: 24)),
-                        Text(' 10000', style: TextStyle(fontSize: 24))
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Price ', style: TextStyle(fontSize: 24)),
+                      Text(widget.listing.price.toString(),
+                          style: TextStyle(fontSize: 24)),
+                      Text(' ETH', style: TextStyle(fontSize: 24))
+                    ],
                   ),
 
                   // Container(
