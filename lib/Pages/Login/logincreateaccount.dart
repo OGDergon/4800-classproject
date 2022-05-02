@@ -10,50 +10,13 @@ class CreateAccount extends StatefulWidget {
 class _CreateAccountState extends State<CreateAccount> {
 
   String buttonText = 'Create Account';
-  Color buttonColor = Colors.white;
+  Color buttonColor = Colors.blue;
 
-  String userName1 = '';
-  String userName2 = '';
+  String userName1 = 'different';
+  String userName2 = 'placeholder';
 
-  String password1 = '';
-  String password2 = '';
-
-
-  TextButton confirmButton(String name1, String name2, String pass1, String pass2)
-  {
-    print(name1);
-    print(name2);
-    print(pass1);
-    print(pass2);
-    return TextButton(
-      onPressed: () {
-        if ((name1 == name2) && (pass1 == pass2)) {
-          //push to page stack
-          // print('accepted');
-          // print(name1);
-          // print(name2);
-          // print(pass1);
-          // print(pass2);
-        }
-        else if ((name1 != name2) && (pass1 == pass2)) {
-          setState(() {
-            buttonText = 'Email Mismatch';
-          });
-          print('first else');
-        }
-        else {
-          setState(() {
-            buttonText = 'Password Mismatch';
-          });
-          print('last else');
-        }
-      },
-      child: Text(
-        buttonText,
-        style: TextStyle(color: Colors.white, fontSize: 25),
-      ),
-    );
-  }
+  String password1 = 'data';
+  String password2 = 'lmao';
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +41,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   child: TextField(
                     onChanged: (String text) {
                         userName1 = text;
-                        print(userName1);
+                        // print(userName1);
                     },
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -128,9 +91,38 @@ class _CreateAccountState extends State<CreateAccount> {
                 height: 50,
                 width: 250,
                 decoration: BoxDecoration(
-                    color: Colors.blue, borderRadius: BorderRadius.circular(20)
+                    color: buttonColor, borderRadius: BorderRadius.circular(20)
                 ),
-                child: confirmButton(userName1, userName2, password1, password2)
+                child: TextButton(
+                  onPressed: () {
+                    if ((userName1 == userName2) && (password1 == password2)) {
+                      // print('accepted');
+                      setState(() {
+                        buttonColor = Colors.blue;
+                        buttonText = 'Create Account';
+                      });
+
+                    }
+                    else if ((userName1 != userName2) && (password1 == password2)) {
+                      setState(() {
+                        buttonText = 'Email Mismatch';
+                        buttonColor = Colors.red;
+                      });
+                      // print('first else');
+                    }
+                    else {
+                      setState(() {
+                        buttonText = 'Password Mismatch';
+                        buttonColor = Colors.red;
+                      });
+                      // print('last else');
+                    }
+                  },
+                  child: Text(
+                    buttonText,
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 130,
