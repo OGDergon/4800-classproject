@@ -14,19 +14,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return ValueListenableBuilder<ThemeMode>(
-      valueListenable: themeNotifier,
-      builder: (_, ThemeMode currentMode, __) {
-        return MaterialApp(
-          title: 'NFTrade',
-          themeMode: currentMode,
-          darkTheme: ThemeData.dark(),
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          debugShowCheckedModeBanner: false,
-          home: const MyHomePage(title: 'NFTrade',),
-        );
-      }
+        valueListenable: themeNotifier,
+        builder: (_, ThemeMode currentMode, __) {
+          return MaterialApp(
+            title: 'NFTrade',
+            themeMode: currentMode,
+            darkTheme: ThemeData.dark(),
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            debugShowCheckedModeBanner: false,
+            home: const MyHomePage(title: 'NFTrade',),
+          );
+        }
     );
   }
 }
