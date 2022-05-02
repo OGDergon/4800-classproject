@@ -5,19 +5,28 @@ void main() {
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
+  static final ValueNotifier<ThemeMode> themeNotifier =
+  ValueNotifier(ThemeMode.light);
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      title: 'NFTrade',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'NFTrade',),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (_, ThemeMode currentMode, __) {
+        return MaterialApp(
+          title: 'NFTrade',
+          themeMode: currentMode,
+          darkTheme: ThemeData.dark(),
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: const MyHomePage(title: 'NFTrade',),
+        );
+      }
     );
   }
 }

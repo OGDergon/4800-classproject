@@ -1,11 +1,9 @@
-import 'package:cs4800_classproject/Database/database.dart';
-import 'package:cs4800_classproject/Pages/Dashboard/dashboardmain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../../Classes/user.dart';
-import '../Login/loginmain.dart';
+import 'package:cs4800_classproject/Pages/Profile/profileedit.dart';
 
+import '../../main.dart';
 
 class ProfileMain extends StatefulWidget {
   const ProfileMain({Key? key, required this.user}) : super(key: key);
@@ -16,39 +14,27 @@ class ProfileMain extends StatefulWidget {
 }
 
 class _ProfileMainState extends State<ProfileMain> {
-  void _handleSubmitted() {
-  User savedUser = User(widget.user.userId, name, gender, address, password, walletAddress,email);
-  updateUser(savedUser);
-  Navigator.of(context).pop();
-  }
-  bool onChanged = false;
-  late bool _passwordVisible;
-  late bool _walletAddressVisible;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final TextEditingController _nameController = TextEditingController();
-  String name = loggedInUser.name;
-  final TextEditingController _emailController = TextEditingController();
-  String email = loggedInUser.email;
-  final TextEditingController _genderController = TextEditingController();
-  String gender = loggedInUser.gender;
-  final TextEditingController _addressController = TextEditingController();
-  String address = loggedInUser.address;
-  final TextEditingController _passController = TextEditingController();
-  String password = loggedInUser.password;
-  final TextEditingController _cryptoWalletController = TextEditingController();
-  String walletAddress = loggedInUser.cryptoWalletAddress;
+  late bool _toggled;
 
   @override
   void initState() {
-    _passwordVisible = false;
-    _walletAddressVisible = false;
-    _nameController.text = widget.user.name;
-    _addressController.text = widget.user.address;
-    _emailController.text = widget.user.email;
-    _genderController.text = widget.user.gender;
-    _passController.text = widget.user.password;
-    _cryptoWalletController.text = widget.user.cryptoWalletAddress;
+    _toggled = MyApp.themeNotifier.value ==
+        ThemeMode.light ? false : true;
     return super.initState();
+  }
+
+  void _openEndDrawer() {
+    _scaffoldKey.currentState!.openEndDrawer();
+  }
+
+  void _closeEndDrawer() {
+    Navigator.of(context).pop();
+  }
+
+  void _onSwitchChanged(bool value){
+    _toggled = value;
   }
 
   @override
@@ -58,6 +44,7 @@ class _ProfileMainState extends State<ProfileMain> {
     double padding = 16;
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     return Scaffold(
+      key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
@@ -69,267 +56,209 @@ class _ProfileMainState extends State<ProfileMain> {
           ),
         ),
         leading: IconButton(onPressed: () {
-          if(onChanged == false){
-            Navigator.of(context).pop();
-          }else{
-           showDialog(context: context, builder: (_) => AlertDialog(
-             title: Text('Your information has been modified.'),
-             content: SingleChildScrollView(
-               child: ListBody(
-                 children: [
-                   Text('Save changes?')
-                 ],
-               ),
-             ),
-             actions: [
-               TextButton(onPressed: (){
-                 _handleSubmitted();
-                 Navigator.of(context).pop();
-               }, child: Text('Save and Continue')),
-               TextButton(onPressed: (){
-                 Navigator.of(context).pop();
-                 Navigator.of(context).pop();
-               }, child: Text('Discard Changes')),
-               TextButton(onPressed: (){
-                 Navigator.of(context).pop();
-               }, child: Text('Cancel')),
-             ],
-           ));
-          }
-
-        }, icon: new Icon(Icons.arrow_back)),
+          Navigator.of(context).pop();
+        }, icon: Icon(Icons.arrow_back)),
         actions: [
-          IconButton(onPressed: (){
-            //Navigator.of(context).pop();
-            //Navigator.of(context).pop();
-            showDialog(context: context, builder: (_) => AlertDialog(
-              actionsAlignment: MainAxisAlignment.center,
-              actions: [
-                TextButton(onPressed: null,
-                    child: Text('Settings')),
-                TextButton(onPressed: (){
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                }, child: Text('Logout')),
-                TextButton(onPressed: (){
-                  Navigator.of(context).pop();
-                }, child: Text('Cancel')),
-              ],
-            ));
-          }, icon: Icon(Icons.settings))
+          IconButton(
+              onPressed: _openEndDrawer,
+              icon: Icon(Icons.settings))
         ],
       ),
-      body: Column(
-          children: [
-            //top navigation: back to dashboard(?), profile header, settings cog
-            //text fields
-            Expanded(
-              flex: 60,
-              child: ListView(
-                children: [
-                  SizedBox(height: 20),
+      body: Center(
+        child: Column(
+            children: [
+              //top navigation: back to dashboard(?), profile header, settings cog
+              //text fields
+                    SizedBox(height: 20),
 
-                  // Personal info
-                  Padding(padding: sidePadding,
-                    child: Text("Personal information",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    // Personal info
+                    Padding(padding: sidePadding,
+                      child: Text("Personal information",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
+                    Padding(
                       padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Name',
-                            hintText: 'Edit Name'
-                        ),
-                        controller: _nameController,
-                        onChanged: (String value) {
-                          name = value;
-                          onChanged=true;
-                        },
-                      )
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Gender',
-                            hintText: 'Edit Gender'
-                        ),
-                        controller: _genderController,
-                        onChanged: (String value) {
-                          gender = value;
-                          onChanged=true;
-                        },
-                      )
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Shipping Address',
-                            hintText: 'Edit Shipping Address'
-                        ),
-                        controller: _addressController,
-                        onChanged: (String value) {
-                          address = value;
-                          onChanged=true;
-                        },
-                      )
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
-                            hintText: 'Edit Email'
-                        ),
-                        controller: _emailController,
-                        onChanged: (String value) {
-                          email = value;
-                          onChanged=true;
-                        },
-                      )
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                    child: TextField(
-                      obscureText: !_passwordVisible,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Password',
-                          hintText: 'Edit Password',
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+                      child: RichText(
+                            text: TextSpan(
+                              children: [
+                                WidgetSpan(
+                                  child: Icon(Icons.person, size: 30),
+                                ),
+                                TextSpan(
+                                  text:"\tName",
+                                  style: TextStyle(fontSize: 30.0,color: _toggled? Colors.white: Colors.black),
+                                ),
+                              ],
                             ),
-                            onPressed: (){
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
-                          )
-                      ),
-                      controller: _passController,
-                      onChanged: (String value) {
-                        password = value;
-                        onChanged=true;
-                      },
+                          ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-
-                  // Billing info
-                  Padding(padding: sidePadding,
-                    child: Text("Billing",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Padding(
+                    Padding(
                       padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Card Number',
-                            hintText: 'Enter credit card number'
-                        ),
-                      )
-                  ),
-                  const Padding(
-                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Expiration Date',
-                            hintText: 'Enter credit card expiration date'
-                        ),
-                      )
-                  ),
-                  const Padding(
-                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'CSC',
-                            hintText: 'Enter credit card security code'
-                        ),
-                      )
-                  ),
-                  SizedBox(height: 20),
-
-                  // Wallet info
-                  Padding(padding: sidePadding,
-                    child: Text("Crypto Wallet information",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
-                    child: TextField(
-                      obscureText: !_walletAddressVisible,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Wallet Address',
-                          hintText: 'Edit Wallet Address',
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _walletAddressVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: widget.user.name,
+                              style: TextStyle(fontSize: 25.0,color: _toggled? Colors.amber: Colors.blue),
                             ),
-                            onPressed: (){
-                              setState(() {
-                                _walletAddressVisible = !_walletAddressVisible;
-                              });
-                            },
-                          )
+                          ],
+                        ),
                       ),
-                      controller: _cryptoWalletController,
-                      onChanged: (String value) {
-                        walletAddress = value;
-                      },
                     ),
-                  ),
-                 ],
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            WidgetSpan(
+                              child: Icon(Icons.male_outlined, size: 30),
+                            ),
+                            TextSpan(
+                              text:"\tGender",
+                              style: TextStyle(fontSize: 30.0,color: _toggled? Colors.white: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: widget.user.gender,
+                              style: TextStyle(fontSize: 25.0,color: _toggled? Colors.amber: Colors.blue,),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            WidgetSpan(
+                              child: Icon(Icons.location_city, size: 30),
+                            ),
+                            TextSpan(
+                              text:"\tAddress",
+                              style: TextStyle(fontSize: 30.0,color: _toggled? Colors.white: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: widget.user.address,
+                              style: TextStyle(fontSize: 25.0,color: _toggled? Colors.amber: Colors.blue,),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            WidgetSpan(
+                              child: Icon(Icons.email, size: 30),
+                            ),
+                            TextSpan(
+                              text:"\tEmail",
+                              style: TextStyle(fontSize: 30.0,color: _toggled? Colors.white: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 10,bottom: 0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: widget.user.email,
+                              style: TextStyle(fontSize: 25.0,color: _toggled? Colors.amber: Colors.blue,),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                   ],
+
               ),
-            ),
-            //save changes button
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 50,
-                width: 250,
-                decoration: BoxDecoration(
-                    color: Colors.blue, borderRadius: BorderRadius.circular(20)
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    _handleSubmitted();
-                  },
-                  child: const Text(
-                    'Save Changes',
-                    style: TextStyle (color: Colors.white, fontSize: 25),
-                  ),
-                ),
-              ),
-            ),
-            //bottom navigation: home, create listing, profile
-          ]
       ),
-    );
+      endDrawer: Drawer(
+        child: ListView(
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                ),
+                child: Text(
+                  'Settings',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                onTap: (){
+                  _closeEndDrawer();
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => ProfileEditMain(user: widget.user,)));
+                  },
+                title: Text('Edit Profile'),
+                leading: Icon(Icons.edit),
+                iconColor: Colors.blue,
+              ),
+              ListTile(
+                onTap: (){
+                  _closeEndDrawer();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+                  title: Text('Logout'),
+                  leading: Icon(Icons.logout),
+                  iconColor: Colors.red,
+              ),
+              SwitchListTile(
+                title: const Text("Dark Mode"),
+                  secondary: Icon(MyApp.themeNotifier.value == ThemeMode.light
+                      ? Icons.dark_mode
+                      : Icons.light_mode),
+                  onChanged: (bool value) {
+                    MyApp.themeNotifier.value =
+                    MyApp.themeNotifier.value == ThemeMode.light 
+                        ? ThemeMode.dark
+                        : ThemeMode.light;
+                    setState(() {
+                      _onSwitchChanged(value);
+                    });
+                  },
+                value: _toggled,
+              ),
+
+              TextButton(onPressed: (){
+                _closeEndDrawer();
+              }, child: Text('Cancel')),
+            ],
+        ),
+        ),
+      endDrawerEnableOpenDragGesture: false,
+      );
   }
 }
