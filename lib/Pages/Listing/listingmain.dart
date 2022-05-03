@@ -139,17 +139,16 @@ class _ListingState extends State<Listing> {
                   //   ],
                   // ),
 
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Price ', style: TextStyle(fontSize: 24)),
-                        Text(widget.listing.price.toString(), style: TextStyle(fontSize: 24)),
-                        Text(new String.fromCharCodes(new Runes(' ETH')),
-                            style: TextStyle(fontSize: 24)),
-                      ],
-                    ),
-
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Price ', style: TextStyle(fontSize: 24)),
+                      Text(widget.listing.price.toString(),
+                          style: TextStyle(fontSize: 24)),
+                      Text(new String.fromCharCodes(new Runes(' ETH')),
+                          style: TextStyle(fontSize: 24)),
+                    ],
+                  ),
 
                   // Container(
                   //   child: ListView.builder(
@@ -170,8 +169,7 @@ class _ListingState extends State<Listing> {
                         BoxDecoration(border: Border.all(color: Colors.black)),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
-                      child: Text(
-                          widget.listing.description),
+                      child: Text(widget.listing.description),
                     ),
                   ),
 

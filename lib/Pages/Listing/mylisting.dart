@@ -49,132 +49,130 @@ class _myListingState extends State<myListing> {
     double width = MediaQuery.of(context).size.width;
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            SafeArea(
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DashboardMain(
-                                      user: loggedInUser,
-                                    )));
-                      },
-                      icon: const Icon(Icons.arrow_back)),
-                  Padding(
-                    padding: allPadding,
-                    child: Text('Listing',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30)),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 90,
-              child: Column(
-                children: [
-                  Container(
-                      child: CarouselSlider(
-                    options: CarouselOptions(),
-                    items: photo
-                        .map((item) => Container(
-                              child: Center(
-                                  child: Image.network(item.getPhoto(),
-                                      fit: BoxFit.cover, width: 1000)),
-                            ))
-                        .toList(),
-                  )),
-
-                  // Container(
-                  //     height: 250.0,
-                  //     width: 500.0,
-                  //     margin: EdgeInsets.all(20.0),
-                  //     color: Colors.white,
-                  //     child: Image.network(photo.photoUrl, fit: BoxFit.cover)),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Padding(
-                  //       padding: const EdgeInsets.all(2.0),
-                  //       child: ClipRRect(
-                  //         borderRadius: BorderRadius.circular(6.0),
-                  //         child: Image.asset(
-                  //           'assets/images/image.jpg',
-                  //           fit: BoxFit.cover,
-                  //           width: width * .3,
-                  //           height: width * .3,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Padding(
-                  //       padding: const EdgeInsets.all(2.0),
-                  //       child: ClipRRect(
-                  //         borderRadius: BorderRadius.circular(6.0),
-                  //         child: Image.asset(
-                  //           'assets/images/image.jpg',
-                  //           fit: BoxFit.cover,
-                  //           width: width * .3,
-                  //           height: width * .3,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Padding(
-                  //       padding: const EdgeInsets.all(2.0),
-                  //       child: ClipRRect(
-                  //         borderRadius: BorderRadius.circular(6.0),
-                  //         child: Image.asset(
-                  //           'assets/images/image.jpg',
-                  //           fit: BoxFit.cover,
-                  //           width: width * .3,
-                  //           height: width * .3,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Price ', style: TextStyle(fontSize: 24)),
-                      Text(widget.listing.price.toString(),
-                          style: TextStyle(fontSize: 24)),
-                      Text(' ETH', style: TextStyle(fontSize: 24))
-                    ],
-                  ),
-
-                  // Container(
-                  //   child: ListView.builder(
-                  //       itemCount: 1,
-                  //       itemBuilder: (context, index) {
-                  //         return Padding(
-                  //           padding: const EdgeInsets.all(8.0),
-                  //           child: Text('Description'),
-                  //         );
-                  //       }),
-                  // ),
-
-                  Container(
-                    height: 100,
-                    width: 350,
-                    padding: const EdgeInsets.all(10.0),
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Text(widget.listing.description),
+          backgroundColor: Colors.white,
+          body: Column(
+            children: [
+              SafeArea(
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DashboardMain(
+                                        user: loggedInUser,
+                                      )));
+                        },
+                        icon: const Icon(Icons.arrow_back)),
+                    Padding(
+                      padding: allPadding,
+                      child: Text('Listing',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30)),
                     ),
-                  ),
+                  ],
+                ),
+              ),
+              Expanded(
+                  flex: 90,
+                  child: Column(children: [
+                    Container(
+                        child: CarouselSlider(
+                      options: CarouselOptions(),
+                      items: photo
+                          .map((item) => Container(
+                                child: Center(
+                                    child: Image.network(item.getPhoto(),
+                                        fit: BoxFit.cover, width: 1000)),
+                              ))
+                          .toList(),
+                    )),
 
-                  Row(
-                    children: [
+                    // Container(
+                    //     height: 250.0,
+                    //     width: 500.0,
+                    //     margin: EdgeInsets.all(20.0),
+                    //     color: Colors.white,
+                    //     child: Image.network(photo.photoUrl, fit: BoxFit.cover)),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(2.0),
+                    //       child: ClipRRect(
+                    //         borderRadius: BorderRadius.circular(6.0),
+                    //         child: Image.asset(
+                    //           'assets/images/image.jpg',
+                    //           fit: BoxFit.cover,
+                    //           width: width * .3,
+                    //           height: width * .3,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(2.0),
+                    //       child: ClipRRect(
+                    //         borderRadius: BorderRadius.circular(6.0),
+                    //         child: Image.asset(
+                    //           'assets/images/image.jpg',
+                    //           fit: BoxFit.cover,
+                    //           width: width * .3,
+                    //           height: width * .3,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(2.0),
+                    //       child: ClipRRect(
+                    //         borderRadius: BorderRadius.circular(6.0),
+                    //         child: Image.asset(
+                    //           'assets/images/image.jpg',
+                    //           fit: BoxFit.cover,
+                    //           width: width * .3,
+                    //           height: width * .3,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Price ', style: TextStyle(fontSize: 24)),
+                        Text(widget.listing.price.toString(),
+                            style: TextStyle(fontSize: 24)),
+                        Text(' ETH', style: TextStyle(fontSize: 24))
+                      ],
+                    ),
+
+                    // Container(
+                    //   child: ListView.builder(
+                    //       itemCount: 1,
+                    //       itemBuilder: (context, index) {
+                    //         return Padding(
+                    //           padding: const EdgeInsets.all(8.0),
+                    //           child: Text('Description'),
+                    //         );
+                    //       }),
+                    // ),
+
+                    Container(
+                      height: 100,
+                      width: 350,
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black)),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Text(widget.listing.description),
+                      ),
+                    ),
+
+                    Row(children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 10.0),
@@ -229,44 +227,38 @@ class _myListingState extends State<myListing> {
                           ),
                         ),
                       ),
+                    ]),
+                  ])),
+              Expanded(
+                  flex: 6,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DashboardMain(
+                                            user: loggedInUser,
+                                          )));
+                            },
+                            icon: const Icon(Icons.home)),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.add_photo_alternate)),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.person)),
+                      ),
                     ],
-                  ),
-
-                  Expanded(
-                      flex: 6,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DashboardMain(
-                                                user: loggedInUser,
-                                              )));
-                                },
-                                icon: const Icon(Icons.home)),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.add_photo_alternate)),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.person)),
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                  )),
+            ],
+          )),
     );
   }
 }
