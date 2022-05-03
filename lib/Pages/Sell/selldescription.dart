@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
+import '../../main.dart';
+
 class SellPageDescription extends StatefulWidget {
   const SellPageDescription({Key? key}) : super(key: key);
 
@@ -44,26 +46,54 @@ class _SellPageDescriptionState extends State<SellPageDescription> {
             ),
           ),
 
-          Row(
-            children: [
-                Padding(padding: EdgeInsets.all(padding),
-                  child: const Text(
-                      'Listing Name'
+          Padding(padding: EdgeInsets.only(left: padding, right: padding, bottom: padding/4),
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(8),),
+              child: Row(
+                children: const [
+                  Expanded(
+                    flex: 10,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: TextField(
+                        decoration: InputDecoration.collapsed(
+                            hintText: 'Listing name...'
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                Padding(padding: sidePadding/10,
-                  child: Container(
-                    height: 40,
-                    width: width - 140,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(8),),
-                  ),
-                ),
-            ],
+                ],
+              ),
+            ),
           ),
 
-          Row(
+          Padding(padding: sidePadding,
+            child: Container(
+              height: padding*20,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(8),),
+
+                child: const Expanded(
+                  flex: 10,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.0, top: 8.0),
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 20,
+                      textAlignVertical: TextAlignVertical.top,
+                      decoration: InputDecoration.collapsed(
+                          hintText: 'Description...'
+                      ),
+                    ),
+                  ),
+                ),
+            ),
+          ),
+          /*Row(
             children: [
               Padding(padding: EdgeInsets.all(padding),
                 child: const Text(
@@ -80,13 +110,13 @@ class _SellPageDescriptionState extends State<SellPageDescription> {
                 ),
               ),
             ],
-          ),
+          ),*/
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.only(right: padding),
-                child: Text(
+                child: const Text(
                     'Tags'
                 ),
               ),
@@ -106,10 +136,18 @@ class _SellPageDescriptionState extends State<SellPageDescription> {
                   },
                 ),
               ),
+              Padding(padding: sidePadding/4,
+                child: IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+
+                  },
+                ),
+              )
             ],
           ),
           Container(
-            height: padding*2,
+            padding: EdgeInsets.only(top: padding*6.25),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -219,10 +257,50 @@ class _SellPageDescriptionState extends State<SellPageDescription> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                flex: 0,
+                  child: Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MyHomePage(title: '',)),
+                        );
+                      },
+                      icon: const Icon(Icons.cancel_presentation_sharp),
+                      iconSize: width*0.05,
+                    ),
+                  ),
+              ),
+              Expanded(
+                flex: 0,
+                  child: Padding(padding: EdgeInsets.only(left: padding*4, bottom: padding/4),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SellPagePrice()),
+                        );
+                      },
+                        icon: const Icon(Icons.arrow_right_alt_outlined),
+                        iconSize: width*0.05,
+                    ),
+                  ),
+              ),
+            ],
+          ),
+          /*Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
                 child: IconButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MyHomePage(title: '',)),
+                    );
                   },
                   iconSize: width * 0.05,
                   icon: const Icon(Icons.cancel_presentation_sharp),
@@ -241,7 +319,7 @@ class _SellPageDescriptionState extends State<SellPageDescription> {
                 ),
               ),
             ],
-          ),
+          ),*/
         ],
       ),
     );
