@@ -28,177 +28,164 @@ class _SellPageLocationState extends State<SellPageLocation> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create New Listing'),
+        title: Text('Location'),
         centerTitle: true,
       ),
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
-          Padding(padding: EdgeInsets.all(padding),
-            child: const Text(
-              "Location",
-              style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-          ),
 
-          Padding(padding: EdgeInsets.all(padding*6.5)),
+          Expanded(
+            child: Padding(padding: sidePadding,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField (
 
-          Padding(padding: sidePadding,
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(8),),
-              child: Row(
-                children: const [
-                  Expanded(
-                    flex: 10,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 8.0),
-                      child: TextField(
-                        decoration: InputDecoration.collapsed(
-                            hintText: 'Listing location...'
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
             ),
           ),
 
-          Padding(padding: EdgeInsets.all(padding*8.25)),
+          //Padding(padding: EdgeInsets.all(padding*8.25)),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+
+          Column(
             children: [
-              Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white)
-                  ),
-                  child: const Text(
-                    'Upload',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white)
+                      ),
+                      child: const Text(
+                        'Upload',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: const Text(
+                        'Description',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: const Text(
+                        'Price',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: const Text(
+                        'Location',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Text(
-                    'Description',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Text(
-                    'Price',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Text(
-                    'Location',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          color: Colors.blue
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                    ),
                   ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                  ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                  ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                      color: Colors.blue
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                  },
-                  iconSize: width * 0.05,
-                  icon: const Icon(Icons.cancel_presentation_sharp),
-                ),
-              ),
-              Padding(padding: EdgeInsets.only(left: padding*4, bottom: padding/4),
-                child: IconButton(
-                  onPressed: () {
-                  },
-                  iconSize: width * 0.05,
-                  icon: const Icon(Icons.arrow_right_alt_outlined),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      },
+                      iconSize: width * 0.05,
+                      icon: const Icon(Icons.cancel_presentation_sharp),
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(left: padding*4, bottom: padding/4),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SellPageLocation()),
+                        );
+                      },
+                      iconSize: width * 0.05,
+                      icon: const Icon(Icons.arrow_right_alt_outlined),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

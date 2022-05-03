@@ -108,6 +108,7 @@ class _SellPageUploadState extends State<SellPageUpload> {
             padding: EdgeInsets.only(top: padding, bottom: padding/2),
             child: IconButton(
               onPressed: (){
+
                 //navigate to new page and return a photo path.
                 //String path = navigate to new page.
               },
@@ -248,136 +249,143 @@ class _SellPageUploadState extends State<SellPageUpload> {
               ]),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
             children: [
-              Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white)
-                  ),
-                  child: const Text(
-                    'Upload',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white)
+                      ),
+                      child: const Text(
+                        'Upload',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: const Text(
+                        'Description',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: const Text(
+                        'Price',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: const Text(
+                        'Location',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Text(
-                    'Description',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Text(
-                    'Price',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: const Text(
-                    'Location',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    color: Colors.blue
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          color: Colors.blue
+                      ),
+                    ),
+                  ),Padding(padding: EdgeInsets.all(0),
+                    child: Container(
+                      height: 20,
+                      width: width/6,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                    ),
                   ),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),),
-                ),
-              ),Padding(padding: EdgeInsets.all(0),
-                child: Container(
-                  height: 20,
-                  width: width/6,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),),
-                ),
+                ],
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MyHomePage(title: '',)),
-                      );
-                    },
-                    iconSize: width * 0.05,
-                    icon: const Icon(Icons.cancel_presentation_sharp),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      },
+                      iconSize: width * 0.05,
+                      icon: const Icon(Icons.cancel_presentation_sharp),
+                    ),
                   ),
-              ),
-              Padding(padding: EdgeInsets.only(left: padding*4, bottom: padding/4),
-                child: IconButton(
-                  onPressed: () {
-                    //Needs to pass arg
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SellPageDescription()),
-                    );
-                  },
-                  iconSize: width * 0.05,
-                  icon: const Icon(Icons.arrow_right_alt_outlined),
-                ),
+                  Padding(padding: EdgeInsets.only(left: padding*4, bottom: padding/4),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SellPageDescription())
+                            //Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: widget.user,)),);
+                          //use above format to pass parameters to next page
+                        );
+                      },
+                      iconSize: width * 0.05,
+                      icon: const Icon(Icons.arrow_right_alt_outlined),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -386,3 +394,11 @@ class _SellPageUploadState extends State<SellPageUpload> {
     );
   }
 }
+
+
+
+//setState(() {
+//                           addPhoto(Photo(photoID:15, listingID:15, imagePath: 'assets/images/image.jpg'));
+//                           addListing(ListingEntry(15, thisUser.userId, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));
+//                         });
+//above useful for adding photo functionality
