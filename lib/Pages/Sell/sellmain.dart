@@ -1,16 +1,15 @@
-import 'package:cs4800_classproject/Classes/listingentry.dart';
-import 'package:cs4800_classproject/Database/database.dart';
 import 'package:cs4800_classproject/Pages/Sell/selldescription.dart';
+import 'package:cs4800_classproject/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
-import '../../Classes/user.dart';
+import '../../Classes/photo.dart';
 
 class SellPageUpload extends StatefulWidget {
-  const SellPageUpload({Key? key, required this.user}) : super(key: key);
-  final User user;
+  const SellPageUpload({Key? key}) : super(key: key);
+
   @override
   _SellPageUploadState createState() => _SellPageUploadState();
 }
@@ -18,11 +17,10 @@ class SellPageUpload extends StatefulWidget {
 class _SellPageUploadState extends State<SellPageUpload> {
   @override
   Widget build(BuildContext context) {
-    //this listing entry will be passed to all subsequent windows.
-    ListingEntry newListing = ListingEntry(generateListingID(), widget.user.userId, '', '', '', 0);
-
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
+    List<Photo> photos;
+    int incriment = 0;
     double padding = 16;
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     final verticalPadding = EdgeInsets.symmetric(vertical: padding);
@@ -125,37 +123,58 @@ class _SellPageUploadState extends State<SellPageUpload> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(2.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          'https://nypost.com/wp-content/uploads/sites/2/2021/06/doge-2.jpg?quality=75&strip=all&w=744',
-                          fit: BoxFit.cover,
-                          width: width * .2,
-                          height: width * .2,
+                      child: Container(
+                        width: width * .2,
+                        height: width * .2,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8),),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6.0),
+                          child: Image.network(
+                            'assets/images/amoogus.jpg',
+                            fit: BoxFit.cover,
+                            width: width * .2,
+                            height: width * .2,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(2.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          'https://nypost.com/wp-content/uploads/sites/2/2021/06/doge-2.jpg?quality=75&strip=all&w=744',
-                          fit: BoxFit.cover,
-                          width: width * .2,
-                          height: width * .2,
+                      child: Container(
+                        width: width * .2,
+                        height: width * .2,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8),),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6.0),
+                          child: Image.network(
+                            'assets/images/amoogus.jpg',
+                            fit: BoxFit.cover,
+                            width: width * .2,
+                            height: width * .2,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(2.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          'https://nypost.com/wp-content/uploads/sites/2/2021/06/doge-2.jpg?quality=75&strip=all&w=744',
-                          fit: BoxFit.cover,
-                          width: width * .2,
-                          height: width * .2,
+                      child: Container(
+                        width: width * .2,
+                        height: width * .2,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8),),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6.0),
+                          child: Image.network(
+                            'assets/images/amoogus.jpg',
+                            fit: BoxFit.cover,
+                            width: width * .2,
+                            height: width * .2,
+                          ),
                         ),
                       ),
                     ),
@@ -166,37 +185,58 @@ class _SellPageUploadState extends State<SellPageUpload> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(2.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          'https://nypost.com/wp-content/uploads/sites/2/2021/06/doge-2.jpg?quality=75&strip=all&w=744',
-                          fit: BoxFit.cover,
-                          width: width * .2,
-                          height: width * .2,
+                      child: Container(
+                        width: width * .2,
+                        height: width * .2,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8),),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6.0),
+                          child: Image.network(
+                            'assets/images/amoogus.jpg',
+                            fit: BoxFit.cover,
+                            width: width * .2,
+                            height: width * .2,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(2.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          'https://nypost.com/wp-content/uploads/sites/2/2021/06/doge-2.jpg?quality=75&strip=all&w=744',
-                          fit: BoxFit.cover,
-                          width: width * .2,
-                          height: width * .2,
+                      child: Container(
+                        width: width * .2,
+                        height: width * .2,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8),),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6.0),
+                          child: Image.network(
+                            'assets/images/amoogus.jpg',
+                            fit: BoxFit.cover,
+                            width: width * .2,
+                            height: width * .2,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(2.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          'https://nypost.com/wp-content/uploads/sites/2/2021/06/doge-2.jpg?quality=75&strip=all&w=744',
-                          fit: BoxFit.cover,
-                          width: width * .2,
-                          height: width * .2,
+                      child: Container(
+                        width: width * .2,
+                        height: width * .2,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8),),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6.0),
+                          child: Image.network(
+                            'assets/images/amoogus.jpg',
+                            fit: BoxFit.cover,
+                            width: width * .2,
+                            height: width * .2,
+                          ),
                         ),
                       ),
                     ),
@@ -314,7 +354,10 @@ class _SellPageUploadState extends State<SellPageUpload> {
               Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
                   child: IconButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MyHomePage(title: '',)),
+                      );
                     },
                     iconSize: width * 0.05,
                     icon: const Icon(Icons.cancel_presentation_sharp),

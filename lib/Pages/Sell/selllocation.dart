@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
+import '../../main.dart';
+
 class SellPageLocation extends StatefulWidget {
   const SellPageLocation({Key? key}) : super(key: key);
 
@@ -43,45 +45,31 @@ class _SellPageLocationState extends State<SellPageLocation> {
 
           Padding(padding: EdgeInsets.all(padding*6.5)),
 
-          Row(
-            children:  [
-              Expanded(
-                flex: 20,
-                child: Padding(
-                  padding: EdgeInsets.all(padding),
-                  child: const Text(
-                      'Location'
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 80,
-                child: Padding(
-                  padding: EdgeInsets.only(right: padding),
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    /*children: [
-                      Padding(padding: EdgeInsets.all(padding),
-                        child: Icon((Icons.attach_money)),
-                      ),
-                      Padding(padding: EdgeInsets.all(padding),
-                        child: const TextField(
-                          decoration: InputDecoration.collapsed(hintText: 'Asking price...'),
-                          onChanged: null,
+          Padding(padding: sidePadding,
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(8),),
+              child: Row(
+                children: const [
+                  Expanded(
+                    flex: 10,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: TextField(
+                        decoration: InputDecoration.collapsed(
+                            hintText: 'Listing location...'
                         ),
                       ),
-                    ],*/
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
 
-          Padding(padding: EdgeInsets.all(padding*6)),
+          Padding(padding: EdgeInsets.all(padding*8.25)),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -195,10 +183,10 @@ class _SellPageLocationState extends State<SellPageLocation> {
               Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
                 child: IconButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MyHomePage(title: '',)),
+                    );
                   },
                   iconSize: width * 0.05,
                   icon: const Icon(Icons.cancel_presentation_sharp),
