@@ -6,9 +6,11 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 import '../../Classes/photo.dart';
+import '../../Classes/user.dart';
 
 class SellPageUpload extends StatefulWidget {
-  const SellPageUpload({Key? key}) : super(key: key);
+  const SellPageUpload({Key? key ,required this.user}) : super(key: key);
+  final User user;
 
   @override
   _SellPageUploadState createState() => _SellPageUploadState();
@@ -106,7 +108,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
             padding: EdgeInsets.only(top: padding, bottom: padding/2),
             child: IconButton(
               onPressed: (){
-
+                //navigate to new page and return a photo path.
+                //String path = navigate to new page.
               },
               iconSize: width/10,
               color: Colors.blue,
@@ -366,6 +369,7 @@ class _SellPageUploadState extends State<SellPageUpload> {
               Padding(padding: EdgeInsets.only(left: padding*4, bottom: padding/4),
                 child: IconButton(
                   onPressed: () {
+                    //Needs to pass arg
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const SellPageDescription()),

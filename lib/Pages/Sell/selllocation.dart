@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 import '../../main.dart';
+import '../Dashboard/dashboardmain.dart';
 
 class SellPageLocation extends StatefulWidget {
   const SellPageLocation({Key? key}) : super(key: key);
@@ -183,10 +184,9 @@ class _SellPageLocationState extends State<SellPageLocation> {
               Padding(padding: EdgeInsets.only(right: padding*4, bottom: padding/4),
                 child: IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MyHomePage(title: '',)),
-                    );
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
                   },
                   iconSize: width * 0.05,
                   icon: const Icon(Icons.cancel_presentation_sharp),
