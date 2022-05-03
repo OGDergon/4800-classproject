@@ -1,3 +1,5 @@
+import 'package:cs4800_classproject/Classes/listingentry.dart';
+import 'package:cs4800_classproject/Database/database.dart';
 import 'package:cs4800_classproject/Pages/Sell/selllocation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +9,17 @@ import 'package:flutter/services.dart';
 import '../../main.dart';
 
 class SellPagePrice extends StatefulWidget {
-  const SellPagePrice({Key? key}) : super(key: key);
+  const SellPagePrice({Key? key, required this.newListing}) : super(key: key);
+
+  final ListingEntry newListing;
 
   @override
   _SellPagePriceState createState() => _SellPagePriceState();
 }
 
 class _SellPagePriceState extends State<SellPagePrice> {
+
+  double price = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +45,15 @@ class _SellPagePriceState extends State<SellPagePrice> {
             child: Padding(padding: sidePadding,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   TextField (
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Price...'
                     ),
+                    onChanged: (String text) {
+                      price = double.parse(text);
+                    },
                   ),
                 ],
               ),
@@ -190,7 +200,11 @@ class _SellPagePriceState extends State<SellPagePrice> {
                           actions: [
                             TextButton(onPressed: (){
                               //final listing creation here
-
+                              widget.newListing.price = price;
+                              addListing(widget.newListing);
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pop();
                               Navigator.of(context).pop();
                             }, child: const Text('List Item')),
                             TextButton(onPressed: (){
@@ -210,5 +224,8 @@ class _SellPagePriceState extends State<SellPagePrice> {
         ],
       ),
     );
+
+
   }
 }
+

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
+import '../../Classes/listingentry.dart';
 import '../../Classes/photo.dart';
 import '../../Classes/user.dart';
+import '../../Database/database.dart';
 
 class SellPageUpload extends StatefulWidget {
   const SellPageUpload({Key? key ,required this.user}) : super(key: key);
@@ -17,18 +19,28 @@ class SellPageUpload extends StatefulWidget {
 }
 
 class _SellPageUploadState extends State<SellPageUpload> {
+  int index = 0;
+  List<String> paths = ['assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg'];
+  String takePhoto(){
+    String path = 'assets/images/image.jpg';
+    return path;
+  }
+  List<Photo> photos = [];
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
-    List<Photo> photos;
-    int incriment = 0;
+
     double padding = 16;
     final sidePadding = EdgeInsets.symmetric(horizontal: padding);
     final verticalPadding = EdgeInsets.symmetric(vertical: padding);
     final allPadding =
     EdgeInsets.symmetric(vertical: padding, horizontal: padding);
     double width = MediaQuery.of(context).size.width;
+    int tempID = generateListingID();
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Create New Listing'),
@@ -107,8 +119,16 @@ class _SellPageUploadState extends State<SellPageUpload> {
           Padding(
             padding: EdgeInsets.only(top: padding, bottom: padding/2),
             child: IconButton(
-              onPressed: (){
-
+              onPressed: () {
+                setState(() {
+                  paths[index] = takePhoto();
+                  index++;
+                  Photo newPhoto = Photo(photoID: generatePhotoID(), listingID: tempID);
+                  photos.add(newPhoto);
+                  addPhoto(Photo(photoID:generatePhotoID(), listingID:tempID, imagePath: paths[index]));
+                  print(generatePhotoID());
+                  //addListing(ListingEntry(15, widget.user.userId, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));
+                });
                 //navigate to new page and return a photo path.
                 //String path = navigate to new page.
               },
@@ -135,8 +155,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.network(
-                            'assets/images/amoogus.jpg',
+                          child: Image.asset(
+                            paths[0],
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -154,8 +174,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.network(
-                            'assets/images/amoogus.jpg',
+                          child: Image.asset(
+                            paths[1],
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -173,8 +193,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.network(
-                            'assets/images/amoogus.jpg',
+                          child: Image.asset(
+                            paths[2],
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -197,8 +217,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.network(
-                            'assets/images/amoogus.jpg',
+                          child: Image.asset(
+                            paths[3],
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -216,8 +236,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.network(
-                            'assets/images/amoogus.jpg',
+                          child: Image.asset(
+                            paths[4],
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -235,8 +255,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.network(
-                            'assets/images/amoogus.jpg',
+                          child: Image.asset(
+                            paths[5],
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -266,6 +286,7 @@ class _SellPageUploadState extends State<SellPageUpload> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12,
+                          fontWeight: FontWeight.bold
                         ),
                       ),
                     ),
@@ -296,7 +317,6 @@ class _SellPageUploadState extends State<SellPageUpload> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.bold
                         ),
                       ),
                     ),
@@ -327,6 +347,7 @@ class _SellPageUploadState extends State<SellPageUpload> {
                       width: width/6,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
+                          color: Colors.blue
                       ),
                     ),
                   ),Padding(padding: EdgeInsets.all(0),
@@ -343,7 +364,6 @@ class _SellPageUploadState extends State<SellPageUpload> {
                       width: width/6,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black),
-                          color: Colors.blue
                       ),
                     ),
                   ),Padding(padding: EdgeInsets.all(0),
@@ -376,7 +396,7 @@ class _SellPageUploadState extends State<SellPageUpload> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const SellPageDescription())
+                          MaterialPageRoute(builder: (context) => SellPageDescription(photos: photos, user: widget.user))
                             //Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: widget.user,)),);
                           //use above format to pass parameters to next page
                         );
