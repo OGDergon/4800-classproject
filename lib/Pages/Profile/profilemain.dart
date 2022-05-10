@@ -230,6 +230,7 @@ class _ProfileMainState extends State<ProfileMain> {
                 _closeEndDrawer();
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
+                MyApp.themeNotifier.value = ThemeMode.light;
               },
               title: Text('Logout'),
               leading: Icon(Icons.logout),

@@ -8,6 +8,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import '../../Classes/photo.dart';
 import '../../Classes/user.dart';
+import '../../main.dart';
 import '../Dashboard/dashboardmain.dart';
 
 // void main() => runApp(Listing());
@@ -36,7 +37,7 @@ class _ListingState extends State<Listing> {
         EdgeInsets.symmetric(vertical: padding, horizontal: padding);
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: (MyApp.themeNotifier.value == ThemeMode.light? Colors.grey[100]: Colors.grey[900]),
           appBar: AppBar(
             centerTitle: true,
             title: Text(widget.listing.title,
@@ -70,10 +71,10 @@ class _ListingState extends State<Listing> {
                       width: width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.white,
+                        color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.white: Colors.black),
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.grey.withOpacity(.5),
+                              color: (MyApp.themeNotifier.value == ThemeMode.light?Colors.grey.withOpacity(.5):Colors.grey.withOpacity((.1))),
                               blurRadius: 8.0,
                               spreadRadius: 2.0,
                               offset: Offset(2,7)
@@ -84,7 +85,9 @@ class _ListingState extends State<Listing> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Description: ", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold)),
+                                  Text("Description: ", style: TextStyle(fontSize: 20,
+                                      color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.black: Colors.white),
+                                      fontWeight: FontWeight.bold)),
                                   Padding(padding: EdgeInsets.all(8.0)),
                                   Text( widget.listing.description,
                                     overflow: TextOverflow.ellipsis,
@@ -98,7 +101,9 @@ class _ListingState extends State<Listing> {
                     Container(
                       padding:  const EdgeInsets.only(top:8.0, bottom: 8.0),
                       child: Text(
-                          "Seller: "+getSeller(widget.listing).name,style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+                          "Seller: "+getSeller(widget.listing).name,style: TextStyle(fontSize: 20,
+                          color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.black: Colors.white),
+                          fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -110,7 +115,7 @@ class _ListingState extends State<Listing> {
                   flex:10,
                       child:((widget.listing.buyerID != -1) || (widget.user.userId == widget.listing.sellerID)) ? Text('') : TextButton(
                         child: Text('Buy',
-                            style: TextStyle(fontSize: 30, color: Colors.white)),
+                            style: TextStyle(fontSize: 30, color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.white: Colors.black))),
                         style: ButtonStyle(
                           minimumSize: MaterialStateProperty.all(Size.infinite),
                             shadowColor: MaterialStateProperty.all(Colors.black),
@@ -118,7 +123,7 @@ class _ListingState extends State<Listing> {
                               return RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20));
                             }),
-                            backgroundColor: MaterialStateProperty.all(Colors.blue)),
+                            backgroundColor: MaterialStateProperty.all(MyApp.themeNotifier.value == ThemeMode.light? Colors.blue: Colors.amber)),
                         onPressed: () {
                           buyListing(widget.listing,widget.user);
                           Navigator.of(context).pop();
