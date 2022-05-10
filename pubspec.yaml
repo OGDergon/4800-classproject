@@ -32,6 +32,7 @@ dependencies:
   camera:
   path_provider:
   path:
+  image_picker:
 
   carousel_slider: ^4.1.1
 

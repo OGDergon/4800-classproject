@@ -1,24 +1,57 @@
 import 'package:cs4800_classproject/Pages/Sell/selldescription.dart';
-import 'package:cs4800_classproject/main.dart';
+import 'package:cs4800_classproject/Pages/Sell/take_picture_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:camera/camera.dart';
+import 'package:path/path.dart' as Path;
+import 'package:path_provider/path_provider.dart';
 
-import '../../Classes/listingentry.dart';
 import '../../Classes/photo.dart';
 import '../../Classes/user.dart';
 import '../../Database/database.dart';
 
 class SellPageUpload extends StatefulWidget {
-  const SellPageUpload({Key? key ,required this.user}) : super(key: key);
+  SellPageUpload({Key? key ,required this.user}) : super(key: key);
   final User user;
+
 
   @override
   _SellPageUploadState createState() => _SellPageUploadState();
 }
 
 class _SellPageUploadState extends State<SellPageUpload> {
+
+  String _path = '';
+
+  void _showPhotoLibrary() async {
+
+    setState(() {
+    });
+
+  }
+
+  Future<String> _showCamera() async {
+
+    final cameras = await availableCameras();
+    final camera = cameras.first;
+
+    final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => TakePicturePage(camera: camera)));
+
+    setState(() {
+      _path = result;
+    });
+
+    return '';
+
+  }
+
   int index = 0;
   List<String> paths = ['assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg', 'assets/images/image.jpg'];
   String takePhoto(){
@@ -119,18 +152,15 @@ class _SellPageUploadState extends State<SellPageUpload> {
           Padding(
             padding: EdgeInsets.only(top: padding, bottom: padding/2),
             child: IconButton(
-              onPressed: () {
+              onPressed: ()  async {
+                await _showCamera();
+                print(_path);
+                paths[index] = _path;
+                photos.add(Photo(photoID: generatePhotoID(), imagePath: paths[index], listingID: tempID));
+                index++;
                 setState(() {
-                  paths[index] = takePhoto();
-                  index++;
-                  Photo newPhoto = Photo(photoID: generatePhotoID(), listingID: tempID);
-                  photos.add(newPhoto);
-                  addPhoto(Photo(photoID:generatePhotoID(), listingID:tempID, imagePath: paths[index]));
-                  print(generatePhotoID());
-                  //addListing(ListingEntry(15, widget.user.userId, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));
+
                 });
-                //navigate to new page and return a photo path.
-                //String path = navigate to new page.
               },
               iconSize: width/10,
               color: Colors.blue,
@@ -155,8 +185,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.asset(
-                            paths[0],
+                          child: Image.file(
+                            File(paths[0]),
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -174,8 +204,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.asset(
-                            paths[1],
+                          child: Image.file(
+                            File(paths[1]),
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -193,8 +223,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.asset(
-                            paths[2],
+                          child: Image.file(
+                            File(paths[2]),
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -217,8 +247,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.asset(
-                            paths[3],
+                          child: Image.file(
+                            File(paths[3]),
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -236,8 +266,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.asset(
-                            paths[4],
+                          child: Image.file(
+                            File(paths[4]),
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -255,8 +285,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                           borderRadius: BorderRadius.circular(8),),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.0),
-                          child: Image.asset(
-                            paths[5],
+                          child: Image.file(
+                            File(paths[5]),
                             fit: BoxFit.cover,
                             width: width * .2,
                             height: width * .2,
@@ -394,11 +424,12 @@ class _SellPageUploadState extends State<SellPageUpload> {
                   Padding(padding: EdgeInsets.only(left: padding*4, bottom: padding/4),
                     child: IconButton(
                       onPressed: () {
+                        for(int i = 0; i < photos.length; i++){
+                          addPhoto(photos[i]);
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => SellPageDescription(photos: photos, user: widget.user))
-                            //Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: widget.user,)),);
-                          //use above format to pass parameters to next page
                         );
                       },
                       iconSize: width * 0.05,
@@ -414,11 +445,3 @@ class _SellPageUploadState extends State<SellPageUpload> {
     );
   }
 }
-
-
-
-//setState(() {
-//                           addPhoto(Photo(photoID:15, listingID:15, imagePath: 'assets/images/image.jpg'));
-//                           addListing(ListingEntry(15, thisUser.userId, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));
-//                         });
-//above useful for adding photo functionality
