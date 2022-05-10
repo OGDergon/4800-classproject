@@ -1,4 +1,5 @@
 import 'package:cs4800_classproject/Database/database.dart';
+import 'package:cs4800_classproject/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../Classes/user.dart';
@@ -295,15 +296,17 @@ class _ProfileEditMainState extends State<ProfileEditMain> {
                 height: 50,
                 width: 250,
                 decoration: BoxDecoration(
-                    color: Colors.blue, borderRadius: BorderRadius.circular(20)
+                    color: (MyApp.themeNotifier.value == ThemeMode.light
+                        ? Colors.blue: Colors.amber), borderRadius: BorderRadius.circular(20)
                 ),
                 child: TextButton(
                   onPressed: () {
                     _handleSubmitted();
                   },
-                  child: const Text(
+                  child: Text(
                     'Save Changes',
-                    style: TextStyle (color: Colors.white, fontSize: 25),
+                    style: TextStyle (color: (MyApp.themeNotifier.value == ThemeMode.light
+                        ? Colors.white: Colors.black), fontSize: 25),
                   ),
                 ),
               ),

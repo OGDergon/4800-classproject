@@ -168,6 +168,7 @@ class _SellPageLocationState extends State<SellPageLocation> {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
+                        Navigator.of(context).pop();
                       },
                       iconSize: width * 0.05,
                       icon: const Icon(Icons.cancel_presentation_sharp),
