@@ -1,7 +1,7 @@
-
-
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as Path;
 import 'package:flutter/cupertino.dart';
-
+import 'dart:io';
 class Photo{
   int photoID = 0;
   int listingID = 0;
@@ -17,7 +17,7 @@ class Photo{
           height: width);
     }else if(imagePath != '')
     {
-      return Image.asset(imagePath, fit: BoxFit.cover,
+      return Image.file(File(imagePath), fit: BoxFit.cover,
           width: width,
           height: width);
     }else{
