@@ -414,8 +414,8 @@ class _SellPageUploadState extends State<SellPageUpload> {
                     child: IconButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pop();
+                        //Navigator.of(context).pop();
+                        //Navigator.of(context).pop();
                       },
                       iconSize: width * 0.05,
                       icon: const Icon(Icons.cancel_presentation_sharp),

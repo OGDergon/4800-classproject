@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 //import 'package:substring_highlight/substring_highlight.dart';
 
 import '../../Classes/user.dart';
+import '../../main.dart';
 import '../Listing/listingmain.dart';
 import '../Login/loginmain.dart';
 
@@ -92,10 +93,10 @@ class _DashboardMainState extends State<DashboardMain> {
                       PageRouteBuilder(
                           pageBuilder: (context, animation1, animation2) => DashboardTrending(user: widget.user),
                           transitionDuration: const Duration(seconds: 0)));
-                }, child: const Text(
+                }, child: Text(
                     'Your Purchases',
                   style: TextStyle(
-                    color: Colors.black
+                    color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.black : Colors.white)
                   ),
                 )),
               ),
@@ -105,10 +106,10 @@ class _DashboardMainState extends State<DashboardMain> {
                       PageRouteBuilder(
                           pageBuilder: (context, animation1, animation2) => DashboardListing(user: widget.user),
                           transitionDuration: Duration(seconds: 0)));
-                }, child: const Text(
+                }, child: Text(
                     'Your Listings',
                     style: TextStyle(
-                    color: Colors.black
+                    color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.black : Colors.white)
                 ),
                 )),
               )
@@ -118,7 +119,7 @@ class _DashboardMainState extends State<DashboardMain> {
       Expanded(
         flex: 60,
         child: Container(
-          color: Colors.grey[100],
+          color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.grey[100]: Colors.grey[900]),
           child: RefreshIndicator(
             child: searchlists.isEmpty ? Center(child: Text("No results found.")): ListView.builder(
               physics: const BouncingScrollPhysics(),
@@ -129,10 +130,10 @@ class _DashboardMainState extends State<DashboardMain> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(6.0),
-                                  color: Colors.white,
+                                  color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.white: Colors.black),
                                   boxShadow: [
                                     BoxShadow(
-                                        color: Colors.grey.withOpacity(.5),
+                                        color: (MyApp.themeNotifier.value == ThemeMode.light?Colors.grey.withOpacity(.5):Colors.grey.withOpacity((.1))),
                                         blurRadius: 8.0,
                                         spreadRadius: 2.0,
                                         offset: Offset(2,7)
@@ -157,6 +158,8 @@ class _DashboardMainState extends State<DashboardMain> {
                                                     Text(searchlists[index].title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
                                                     Text("SOLD", style: TextStyle(fontSize: 18, color: Colors.red,),),
                                                     Text(searchlists[index].description,
+                                                      style: TextStyle(fontSize: 18,
+                                                        color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.black: Colors.white),),
                                                       overflow: TextOverflow.ellipsis,
                                                       softWrap: true,
                                                       maxLines: 4,
