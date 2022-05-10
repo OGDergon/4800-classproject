@@ -1,4 +1,11 @@
+import 'package:cs4800_classproject/Database/database.dart';
 import 'package:flutter/material.dart';
+
+import '../../Classes/user.dart';
+import '../Dashboard/dashboardmain.dart';
+import '../Profile/profileedit.dart';
+import '../Profile/profilemain.dart';
+import 'loginmain.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
@@ -98,9 +105,22 @@ class _CreateAccountState extends State<CreateAccount> {
                     if ((userName1 == userName2) && (password1 == password2)) {
                       // print('accepted');
                       setState(() {
+                        //create user.
+                        final userid = generateUserID();
+                        User newUser = User(generateUserID(),'Name','gender','address',password1,'walletaddress',userName1);
+                        addUser(newUser);
                         buttonColor = Colors.blue;
                         buttonText = 'Create Account';
+
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginMain()),);
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => DashboardMain(user: newUser,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileMain(user: newUser,)),);
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => ProfileEditMain(user: newUser,)));
+
+
                       });
+
+
 
                     }
                     else if ((userName1 != userName2) && (password1 == password2)) {

@@ -1,4 +1,5 @@
 import 'package:cs4800_classproject/Database/database.dart';
+import 'package:cs4800_classproject/Pages/Profile/profilemain.dart';
 import 'package:cs4800_classproject/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,7 @@ class _ProfileEditMainState extends State<ProfileEditMain> {
   void _handleSubmitted() {
     User savedUser = User(widget.user.userId, name, gender, address, password, walletAddress,email);
     updateUser(savedUser);
-    Navigator.of(context).pop();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfileMain(user: savedUser,)),);
   }
 
   bool onChanged = false;

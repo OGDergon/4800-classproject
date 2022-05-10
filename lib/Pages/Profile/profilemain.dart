@@ -219,7 +219,9 @@ class _ProfileMainState extends State<ProfileMain> {
             ListTile(
               onTap: (){
                 _closeEndDrawer();
-                Navigator.push(context, MaterialPageRoute(builder: (_) => ProfileEditMain(user: widget.user,)));
+                setState(() {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => ProfileEditMain(user: widget.user,)));
+                });
               },
               title: Text('Edit Profile'),
               leading: Icon(Icons.edit),

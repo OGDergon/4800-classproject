@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../../Classes/user.dart';
 import '../Dashboard/dashboardmain.dart';
+import 'logincreateaccount.dart';
 
 class LoginMain extends StatefulWidget {
   const LoginMain({Key? key}) : super(key: key);
@@ -85,7 +86,11 @@ class _LoginMainState extends State<LoginMain> {
           const SizedBox(
             height: 130,
           ),
-          const Text('New User? Create Account')
+          TextButton(
+              onPressed: () { 
+                Navigator.push(context,MaterialPageRoute(builder: (_)=> CreateAccount()));
+              },
+              child: const Text('New User? Create Account'))
         ],
       ),
     )

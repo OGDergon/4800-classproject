@@ -104,6 +104,21 @@ int generatePhotoID(){
   }
   return maxID + 1;
 }
+int generateUserID(){
+  //will do this differently to handle async calls from mult devices.
+  //reserve the spot on list prior to completion so listingID isnt more than once.
+  int maxID= 1;
+  for(var i = 0; i < users.length; ++i){
+    if(users[i].userId >maxID){
+      maxID = users[i].userId;
+    }
+  }
+  return maxID + 1;
+}
+User addUser(User user){
+  users.add(user);
+  return user;
+}
 
 List<ListingEntry> getMyBuys(User me){
   List<ListingEntry> myListings = [];
