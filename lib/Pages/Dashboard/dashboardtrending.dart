@@ -8,6 +8,7 @@ import '../../Classes/listingentry.dart';
 import '../../Classes/photo.dart';
 import '../../Classes/user.dart';
 import '../../Database/database.dart';
+import '../../main.dart';
 import '../Listing/listingmain.dart';
 import '../Login/loginmain.dart';
 import '../Profile/profilemain.dart';
@@ -85,7 +86,7 @@ class _DashboardTrendingState extends State<DashboardTrending> {
                     }, child: Text(
                       'All',
                       style: TextStyle(
-                          color: Colors.black
+                          color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.black : Colors.white)
                       ),
                     ),),
                   ),
@@ -102,10 +103,10 @@ class _DashboardTrendingState extends State<DashboardTrending> {
                           PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) => DashboardListing(user: thisUser),
                               transitionDuration: Duration(seconds: 0)));
-                    }, child: const Text(
+                    }, child: Text(
                       'Your Listings',
                       style: TextStyle(
-                        color: Colors.black
+                        color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.black : Colors.white)
                       ),
                     )),
                   )
@@ -115,7 +116,7 @@ class _DashboardTrendingState extends State<DashboardTrending> {
             Expanded(
               flex: 60,
               child: Container(
-                color: Colors.grey[100],
+                color: (MyApp.themeNotifier.value == ThemeMode.light? Colors.grey[100]: Colors.grey[900]),
                 child: RefreshIndicator(
                   child: searchLists.isEmpty ? Center(child: Text("No results found.")):ListView.builder(
                       physics: const BouncingScrollPhysics(),
@@ -126,10 +127,10 @@ class _DashboardTrendingState extends State<DashboardTrending> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6.0),
-                              color: Colors.white,
+                              color:(MyApp.themeNotifier.value == ThemeMode.light? Colors.white: Colors.black),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.grey.withOpacity(.5),
+                                    color: (MyApp.themeNotifier.value == ThemeMode.light?Colors.grey.withOpacity(.5):Colors.grey.withOpacity((.1))),
                                     blurRadius: 8.0,
                                     spreadRadius: 2.0,
                                     offset: Offset(2,7)
