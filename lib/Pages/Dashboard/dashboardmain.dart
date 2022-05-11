@@ -31,6 +31,7 @@ class _DashboardMainState extends State<DashboardMain> {
 
   @override
   Widget build(BuildContext context) {
+    ListingEntry listnEntry;
     User thisUser = widget.user;
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
@@ -208,8 +209,9 @@ class _DashboardMainState extends State<DashboardMain> {
             ),
             Expanded(
               child: IconButton(onPressed: (){
-                setState(() {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SellPageUpload(user: thisUser,)),);
+                setState(() async {
+                  listnEntry = await Navigator.push(context, MaterialPageRoute(builder: (context) => SellPageUpload(user: thisUser,)),);
+                  searchlists = searchListings('');
                   //below code will generate a listing for sale.
                   //addPhoto(Photo(photoID:15, listingID:15, imagePath: 'assets/images/image.jpg'));
                   //addListing(ListingEntry(15, thisUser.userId, "Added Listing", "This is my added listing", "nFTTokenNum", 1220000.0));

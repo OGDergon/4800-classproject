@@ -1,11 +1,13 @@
 import 'package:cs4800_classproject/Classes/listingentry.dart';
 import 'package:cs4800_classproject/Database/database.dart';
+import 'package:cs4800_classproject/Pages/Dashboard/dashboardmain.dart';
 import 'package:cs4800_classproject/Pages/Sell/selllocation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
+import '../../Classes/user.dart';
 import '../../main.dart';
 
 class SellPagePrice extends StatefulWidget {
@@ -202,10 +204,12 @@ class _SellPagePriceState extends State<SellPagePrice> {
                               //final listing creation here
                               widget.newListing.price = price;
                               addListing(widget.newListing);
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
+                              User me = getSeller(widget.newListing);
+                              Navigator.pop(context,widget.newListing);
+                              Navigator.pop(context,widget.newListing);
+                              Navigator.pop(context,widget.newListing);
+                              Navigator.pop(context,widget.newListing);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashboardMain(user: me)),);
                             }, child: const Text('List Item')),
                             TextButton(onPressed: (){
                               Navigator.of(context).pop();

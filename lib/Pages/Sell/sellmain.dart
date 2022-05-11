@@ -427,10 +427,13 @@ class _SellPageUploadState extends State<SellPageUpload> {
                         for(int i = 0; i < photos.length; i++){
                           addPhoto(photos[i]);
                         }
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SellPageDescription(photos: photos, user: widget.user))
-                        );
+                        setState(() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SellPageDescription(photos: photos, user: widget.user))
+                          );
+
+                        });
                       },
                       iconSize: width * 0.05,
                       icon: const Icon(Icons.arrow_right_alt_outlined),
