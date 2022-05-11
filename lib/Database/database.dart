@@ -37,6 +37,16 @@ void updateUser(User newUser){
     }
   }
 }
+
+bool isEmailUnique(User userToCheck){
+  for(var i = 0; i < users.length; ++i){
+    if(users[i].email == userToCheck.email){
+      return false;
+    }
+  }
+  return true;
+}
+
 List<ListingEntry> searchListings(String searchWord){
   print('searching listings');
   if(searchWord == ''){
