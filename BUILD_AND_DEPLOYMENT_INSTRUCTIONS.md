@@ -4,13 +4,17 @@ I hecking love NFTs
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run this program,
+It would be best to loaded in the entire project folder into android studio.
 
-A few resources to get you started if this is your first Flutter project:
+This project was built using flutter so install flutter dependencies.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+After which a pub .get all should be ran for all dependencies in the  pubspec.yaml file.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+After this, a VM or smart phone should be setup to deploy the application.
+
+For our project the database is simulated so no other network configurations is necessary.
+
+To run the app, create an account and you will be able to access all of the features.
+
+
